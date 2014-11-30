@@ -16,7 +16,7 @@ namespace ShortcutRunner
             _keyboardHook.KeyPressed += KeyboardHookKeyPressed;
 
             // register the control + alt + F12 combination as hot key.
-            _keyboardHook.RegisterHotKey(ShortcutRunner.ModifierKeys.Control | ShortcutRunner.ModifierKeys.Alt, Keys.F12);
+            _keyboardHook.RegisterHotKey(ShortcutRunner.ModifierKeys.Ctrl | ShortcutRunner.ModifierKeys.Alt, Keys.F12);
         }
 
         void KeyboardHookKeyPressed(object sender, KeyPressedEventArgs e)
@@ -25,7 +25,7 @@ namespace ShortcutRunner
 
             MessageBox.Show(e.Modifier.ToString());
 
-            //label1.Text = e.Modifier.ToString() + " + " + e.Key.ToString();
+            //label1.Text = e.Modifiers.ToString() + " + " + e.Key.ToString();
         }
     }
 }
