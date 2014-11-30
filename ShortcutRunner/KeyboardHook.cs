@@ -6,8 +6,8 @@ namespace ShortcutRunner
 {
     public interface IKeyboardHook : IDisposable
     {
+        event EventHandler<KeyPressedEventArgs> KeyPressed;
         void RegisterHotKey(ModifierKeys modifier, Keys key);
-
     }
 
     public class KeyboardHook : IKeyboardHook
