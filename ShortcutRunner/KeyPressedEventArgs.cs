@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 
 namespace ShortcutRunner
 {
@@ -8,23 +7,11 @@ namespace ShortcutRunner
     /// </summary>
     public class KeyPressedEventArgs : EventArgs
     {
-        private readonly Keys _key;
-        private readonly ModifierKeys _modifier;
+        public ShortcutDescription ShortcutDescription { get; private set; }
 
-        internal KeyPressedEventArgs(ModifierKeys modifier, Keys key)
+        public KeyPressedEventArgs(ShortcutDescription shortcutDescription)
         {
-            _modifier = modifier;
-            _key = key;
-        }
-
-        public ModifierKeys Modifier
-        {
-            get { return _modifier; }
-        }
-
-        public Keys Key
-        {
-            get { return _key; }
+            ShortcutDescription = shortcutDescription;
         }
     }
 }

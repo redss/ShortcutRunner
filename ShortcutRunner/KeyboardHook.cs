@@ -7,7 +7,7 @@ namespace ShortcutRunner
     public interface IKeyboardHook : IDisposable
     {
         event EventHandler<KeyPressedEventArgs> KeyPressed;
-        void RegisterHotKey(ModifierKeys modifier, Keys key);
+        void RegisterHotKey(ShortcutDescription shortcutDescription);
     }
 
     public class KeyboardHook : IKeyboardHook
@@ -35,11 +35,11 @@ namespace ShortcutRunner
         [DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        public void RegisterHotKey(ModifierKeys modifier, Keys key)
+        public void RegisterHotKey(ShortcutDescription shortcutDescription)
         {
             _currentId = _currentId + 1;
 
-            if (!RegisterHotKey(_window.Handle, _currentId, (uint) modifier, (uint) key))
+            if (!RegisterHotKey(_window.Handle, _currentId, (uint) shortcutDescription.Modifiers, (uint) shortcutDescription.Key))
             {
                 throw new InvalidOperationException("Couldn’t register the hot key.");
             }
@@ -86,7 +86,13 @@ namespace ShortcutRunner
                     // invoke the event to notify the parent.
                     if (KeyPressed != null)
                     {
-                        KeyPressed(this, new KeyPressedEventArgs(modifier, key));
+                        var shortcutDescription = new ShortcutDescription
+                        {
+                            Modifiers = modifier,
+                            Key = key
+                        };
+
+                        KeyPressed(this, new KeyPressedEventArgs(shortcutDescription));
                     }
                 }
             }

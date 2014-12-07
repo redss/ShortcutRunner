@@ -13,7 +13,8 @@ namespace ShortcutRunner
             Application.SetCompatibleTextRenderingDefault(false);
 
             var container = new UnityContainer()
-                .RegisterType<IKeyboardHook, KeyboardHook>();
+                .RegisterType<IKeyboardHook, KeyboardHook>()
+                .RegisterType<IShortcutDescriptionParser, ShortcutDescriptionParser>();
 
             var form = container.Resolve<Form1>();
 
