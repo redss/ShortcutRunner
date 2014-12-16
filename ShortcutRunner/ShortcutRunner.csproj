@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IKeyRegistrationApi.cs" />
+    <Compile Include="IKeyRegistrationController.cs" />
     <Compile Include="IKeyRegistrationWrapper.cs" />
     <Compile Include="MessageCatchingWindow.cs" />
     <Compile Include="ModifierKeys.cs" />

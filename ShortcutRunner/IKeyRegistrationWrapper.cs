@@ -4,8 +4,8 @@ namespace ShortcutRunner
 {
     public interface IKeyRegistrationWrapper
     {
-        void RegisterHotKey(IntPtr hWnd, int id, ShortcutDescription shortcutDescription);
-        void UnregisterHotKey(IntPtr hWnd, int id);
+        void RegisterHotKey(IntPtr windowHandle, int hotkeyId, ShortcutDescription shortcutDescription);
+        void UnregisterHotKey(IntPtr windowHandle, int hotkeyId);
     }
 
     public class KeyRegistrationWrapper : IKeyRegistrationWrapper
@@ -17,20 +17,20 @@ namespace ShortcutRunner
             _keyRegistrationApi = keyRegistrationApi;
         }
 
-        public void RegisterHotKey(IntPtr hWnd, int id, ShortcutDescription shortcutDescription)
+        public void RegisterHotKey(IntPtr windowHandle, int hotkeyId, ShortcutDescription shortcutDescription)
         {
-            var registrationResult = _keyRegistrationApi.RegisterHotKey(hWnd, id, 
+            var registrationSucceeded = _keyRegistrationApi.RegisterHotKey(windowHandle, hotkeyId,
                 (uint) shortcutDescription.Modifiers, (uint) shortcutDescription.Key);
 
-            if (registrationResult == false)
+            if (!registrationSucceeded)
             {
                 throw new InvalidOperationException("Couldn’t register the hot key.");
             }
         }
 
-        public void UnregisterHotKey(IntPtr hWnd, int id)
+        public void UnregisterHotKey(IntPtr windowHandle, int hotkeyId)
         {
-            _keyRegistrationApi.UnregisterHotKey(hWnd, id);
+            _keyRegistrationApi.UnregisterHotKey(windowHandle, hotkeyId);
         }
     }
 }

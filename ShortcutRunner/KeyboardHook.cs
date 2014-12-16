@@ -10,42 +10,33 @@ namespace ShortcutRunner
 
     public class KeyboardHook : IKeyboardHook
     {
-        public event EventHandler<KeyPressedEventArgs> KeyPressed;
+        public event EventHandler<KeyPressedEventArgs> KeyPressed = (sender, args) => { };
 
         private readonly IMessageCatchingWindow _messageCatchingWindow;
-        private readonly IKeyRegistrationWrapper _keyRegistrationWrapper;
+        private readonly IKeyRegistrationController _keyRegistrationController;
 
-        private int _currentId;
-
-        public KeyboardHook(IMessageCatchingWindow messageCatchingWindow, IKeyRegistrationWrapper keyRegistrationWrapper)
+        public KeyboardHook(IMessageCatchingWindow messageCatchingWindow, IKeyRegistrationController keyRegistrationController)
         {
             _messageCatchingWindow = messageCatchingWindow;
-            _keyRegistrationWrapper = keyRegistrationWrapper;
+            _keyRegistrationController = keyRegistrationController;
 
-            // register the event of the inner native window.
-            _messageCatchingWindow.KeyPressed += (sender, args) =>
-            {
-                if (KeyPressed != null)
-                {
-                    KeyPressed(this, args);
-                }
-            };
+            _messageCatchingWindow.KeyPressed += OnMessageCatchingWindowOnKeyPressed;
         }
 
         public void RegisterHotKey(ShortcutDescription shortcutDescription)
         {
-            _currentId = _currentId + 1;
-            _keyRegistrationWrapper.RegisterHotKey(_messageCatchingWindow.Handle, _currentId, shortcutDescription);
+            _keyRegistrationController.RegisterHotKey(_messageCatchingWindow.Handle, shortcutDescription);
         }
 
         public void Dispose()
         {
-            for (var i = _currentId; i > 0; i--)
-            {
-                _keyRegistrationWrapper.UnregisterHotKey(_messageCatchingWindow.Handle, i);
-            }
-
+            _keyRegistrationController.Dispose();
             _messageCatchingWindow.Dispose();
+        }
+
+        private void OnMessageCatchingWindowOnKeyPressed(object sender, KeyPressedEventArgs args)
+        {
+            KeyPressed(this, args);
         }
     }
 }

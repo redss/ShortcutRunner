@@ -28,19 +28,19 @@ namespace ShortcutRunner.Tests
 
             // Assert
 
-            A.CallTo(() => fixture.KeyRegistrationApi.RegisterHotKey(windowIntPtr, 1, input))
+            A.CallTo(() => fixture.KeyRegistrationController.RegisterHotKey(windowIntPtr, input))
                 .MustHaveHappened();
         }
     }
 
     class KeyboardHookFixture
     {
-        public readonly IKeyRegistrationWrapper KeyRegistrationApi = A.Fake<IKeyRegistrationWrapper>();
         public readonly IMessageCatchingWindow MessageCatchingWindow = A.Fake<IMessageCatchingWindow>();
+        public readonly IKeyRegistrationController KeyRegistrationController = A.Fake<IKeyRegistrationController>();
 
         public KeyboardHook CreateSut()
         {
-            return new KeyboardHook(MessageCatchingWindow, KeyRegistrationApi);
+            return new KeyboardHook(MessageCatchingWindow, KeyRegistrationController);
         }
     }
 }
