@@ -12,18 +12,13 @@ namespace ShortcutRunner.Tests
         {
             // Arrange
 
-            var fixture = new KeyRegistrationWrapperFixture();
+            var fixture = new KeyRegistrationWrapperFixture()
+                .WithFailingHotkeyRegistration()
+                .Configure();
 
-            A.CallTo(() => fixture.KeyRegistrationApi.RegisterHotKey(A<IntPtr>._, A<int>._, A<uint>._, A<uint>._))
-                .Returns(false);
+            // Act, Assert
 
-            // Act
-
-            var sut = fixture.CreateSut();
-
-            // Assert
-
-            Assert.That(() => sut.RegisterHotKey(new IntPtr(123), 12, new ShortcutDescription()),
+            Assert.That(() => fixture.Sut.RegisterHotKey(new IntPtr(123), 12, new ShortcutDescription()),
                 Throws.TypeOf<InvalidOperationException>());
         }
 
@@ -32,16 +27,12 @@ namespace ShortcutRunner.Tests
         {
             // Arrange
 
-            var fixture = new KeyRegistrationWrapperFixture();
-
-            A.CallTo(() => fixture.KeyRegistrationApi.RegisterHotKey(A<IntPtr>._, A<int>._, A<uint>._, A<uint>._))
-                .Returns(true);
-
-            var sut = fixture.CreateSut();
+            var fixture = new KeyRegistrationWrapperFixture()
+                .Configure();
 
             // Act
 
-            sut.RegisterHotKey(new IntPtr(123), 12, new ShortcutDescription
+            fixture.Sut.RegisterHotKey(new IntPtr(123), 12, new ShortcutDescription
             {
                 Modifiers = ModifierKeys.Shift,
                 Key = Keys.A
@@ -49,8 +40,7 @@ namespace ShortcutRunner.Tests
 
             // Assert
 
-            A.CallTo(() => fixture.KeyRegistrationApi.RegisterHotKey(new IntPtr(123), 12, (uint) ModifierKeys.Shift, (uint) Keys.A))
-                .MustHaveHappened();
+            fixture.VerifyKeyWasRegistered(new IntPtr(123), 12, (uint) ModifierKeys.Shift, (uint) Keys.A);
         }
 
         [Test]
@@ -58,24 +48,58 @@ namespace ShortcutRunner.Tests
         {
             // Arrange
 
-            var fixture = new KeyRegistrationWrapperFixture();
-
-            var sut = fixture.CreateSut();
+            var fixture = new KeyRegistrationWrapperFixture()
+                .Configure();
 
             // Act
 
-            sut.UnregisterHotKey(new IntPtr(123), 12);
+            fixture.Sut.UnregisterHotKey(new IntPtr(123), 12);
 
             // Assert
 
-            A.CallTo(() => fixture.KeyRegistrationApi.UnregisterHotKey(new IntPtr(123), 12))
-                .MustHaveHappened();
+            fixture.VerifyKeyWasUnregistered(new IntPtr(123), 12);
         }
     }
 
     class KeyRegistrationWrapperFixture
     {
-        public IKeyRegistrationApi KeyRegistrationApi = A.Fake<IKeyRegistrationApi>();
+        public KeyRegistrationWrapper Sut;
+
+        private KeyRegistrationWrapperSutFactory _sutFactory = new KeyRegistrationWrapperSutFactory();
+        private bool _registerHotKeyResult = true;
+
+        public KeyRegistrationWrapperFixture WithFailingHotkeyRegistration()
+        {
+            _registerHotKeyResult = false;
+            return this;
+        }
+
+        public KeyRegistrationWrapperFixture Configure()
+        {
+            A.CallTo(() => _sutFactory.KeyRegistrationApi.RegisterHotKey(A<IntPtr>._, A<int>._, A<uint>._, A<uint>._))
+                .Returns(_registerHotKeyResult);
+
+            Sut = _sutFactory.CreateSut();
+
+            return this;
+        }
+
+        public void VerifyKeyWasRegistered(IntPtr hWnd, int id, uint fsModifiers, uint vk)
+        {
+            A.CallTo(() => _sutFactory.KeyRegistrationApi.RegisterHotKey(hWnd, id, fsModifiers, vk))
+                .MustHaveHappened();
+        }
+
+        public void VerifyKeyWasUnregistered(IntPtr hWnd, int id)
+        {
+            A.CallTo(() => _sutFactory.KeyRegistrationApi.UnregisterHotKey(hWnd, id))
+                .MustHaveHappened();
+        }
+    }
+
+    class KeyRegistrationWrapperSutFactory
+    {
+        public readonly IKeyRegistrationApi KeyRegistrationApi = A.Fake<IKeyRegistrationApi>();
 
         public KeyRegistrationWrapper CreateSut()
         {
