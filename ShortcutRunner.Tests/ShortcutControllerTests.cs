@@ -36,7 +36,13 @@ namespace ShortcutRunner.Tests
 
             // Act
 
-            keyboardHook.KeyPressed += Raise.With(new KeyPressedEventArgs(shortcutDescription));
+            var actualShortcut = new ShortcutDescription
+            {
+                Modifiers = ModifierKeys.Shift | ModifierKeys.Alt,
+                Key = Keys.F12
+            };
+
+            keyboardHook.KeyPressed += Raise.With(new KeyPressedEventArgs(actualShortcut));
 
             // Assert
 

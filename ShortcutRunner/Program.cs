@@ -14,7 +14,10 @@ namespace ShortcutRunner
 
             var container = new UnityContainer()
                 .RegisterType<IKeyboardHook, KeyboardHook>()
-                .RegisterType<IShortcutDescriptionParser, ShortcutDescriptionParser>();
+                .RegisterType<IShortcutDescriptionParser, ShortcutDescriptionParser>()
+                .RegisterType<IKeyRegistrationApi, KeyRegistrationApi>()
+                .RegisterType<IMessageCatchingWindow, MessageCatchingWindow>()
+                .RegisterType<IKeyRegistrationWrapper, KeyRegistrationWrapper>();
 
             var form = container.Resolve<Form1>();
 
