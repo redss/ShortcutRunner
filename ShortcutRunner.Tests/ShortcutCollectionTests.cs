@@ -15,9 +15,9 @@ namespace ShortcutRunner.Tests
 
             var action = A.Fake<Action>();
 
-            sut.Add(new ShortcutDescription { Key = Keys.A, Modifiers = ModifierKeys.Shift}, action);
+            sut.Add(ShortcutDescription.Shift(Keys.A), action);
 
-            var actions = sut.GetActions(new ShortcutDescription {Key = Keys.A, Modifiers = ModifierKeys.Shift});
+            var actions = sut.GetActions(ShortcutDescription.Shift(Keys.A));
 
             Assert.That(actions, Is.EquivalentTo(new[] { action }));
         }
@@ -30,10 +30,10 @@ namespace ShortcutRunner.Tests
             var firstAction = A.Fake<Action>();
             var secondAction = A.Fake<Action>();
 
-            sut.Add(new ShortcutDescription {Key = Keys.K, Modifiers = ModifierKeys.Ctrl}, firstAction);
-            sut.Add(new ShortcutDescription {Key = Keys.K, Modifiers = ModifierKeys.Ctrl}, secondAction);
+            sut.Add(ShortcutDescription.Ctrl(Keys.K), firstAction);
+            sut.Add(ShortcutDescription.Ctrl(Keys.K), secondAction);
 
-            var result = sut.GetActions(new ShortcutDescription {Key = Keys.K, Modifiers = ModifierKeys.Ctrl});
+            var result = sut.GetActions(ShortcutDescription.Ctrl(Keys.K));
 
             Assert.That(result, Is.EquivalentTo(new[] { firstAction, secondAction }));
         }

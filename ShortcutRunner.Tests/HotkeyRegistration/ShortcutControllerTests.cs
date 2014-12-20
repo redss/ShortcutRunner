@@ -16,19 +16,11 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
             var keyboardHook = A.Fake<IKeyboardHook>();
             var sut = new ShortcutController(keyboardHook);
 
-            var shortcutDescription = new ShortcutDescription
-            {
-                Modifiers = ModifierKeys.Shift | ModifierKeys.Alt,
-                Key = Keys.F12
-            };
+            var shortcutDescription = ShortcutDescription.Ctrl(Keys.A);
 
             var action = A.Fake<Action>();
 
-            var otherShortcutDescription = new ShortcutDescription
-            {
-                Modifiers = ModifierKeys.Shift,
-                Key = Keys.A
-            };
+            var otherShortcutDescription = ShortcutDescription.Shift(Keys.A);
 
             var otherAction = A.Fake<Action>();
 
@@ -37,13 +29,7 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
             // Act
 
-            var actualShortcut = new ShortcutDescription
-            {
-                Modifiers = ModifierKeys.Shift | ModifierKeys.Alt,
-                Key = Keys.F12
-            };
-
-            keyboardHook.KeyPressed += Raise.With(new KeyPressedEventArgs(actualShortcut));
+            keyboardHook.KeyPressed += Raise.With(new KeyPressedEventArgs(ShortcutDescription.Ctrl(Keys.A)));
 
             // Assert
 

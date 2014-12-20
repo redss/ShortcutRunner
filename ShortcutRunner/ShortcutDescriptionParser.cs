@@ -21,11 +21,8 @@ namespace ShortcutRunner
 
             var parts = shortcut.Split('+').Select(s => s.Trim()).ToArray();
 
-            var result = new ShortcutDescription
-            {
-                Modifiers = 0,
-                Key = Keys.None
-            };
+            var modifiers = ModifierKeys.None;
+            var keys = Keys.None;
 
             foreach (var part in parts)
             {
@@ -33,27 +30,27 @@ namespace ShortcutRunner
 
                 if (modifier.HasValue)
                 {
-                    result.Modifiers |= modifier.Value;
+                    modifiers |= modifier.Value;
                     continue;
                 }
 
                 var key = TryParseKey(part);
 
-                if (key.HasValue && result.Key != Keys.None)
+                if (key.HasValue && keys != Keys.None)
                 {
                     throw new ArgumentException("Shortcut description is invalid: more then one non-modifier key is used.", "shortcut");
                 }
 
                 if (key.HasValue)
                 {
-                    result.Key = key.Value;
+                    keys = key.Value;
                     continue;
                 }
 
                 throw new ArgumentException("Shortcut description is invalid.", "shortcut");
             }
 
-            return result;
+            return new ShortcutDescription(modifiers, keys);
         }
 
         private ModifierKeys? TryParseModifier(string key)

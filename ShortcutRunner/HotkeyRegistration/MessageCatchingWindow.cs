@@ -34,12 +34,7 @@ namespace ShortcutRunner.HotkeyRegistration
                 // invoke the event to notify the parent.
                 if (KeyPressed != null)
                 {
-                    var shortcutDescription = new ShortcutDescription
-                    {
-                        Modifiers = modifier,
-                        Key = key
-                    };
-
+                    var shortcutDescription = new ShortcutDescription(modifier, key);
                     KeyPressed(this, new KeyPressedEventArgs(shortcutDescription));
                 }
             }

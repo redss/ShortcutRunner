@@ -19,7 +19,7 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
             // Act, Assert
 
-            Assert.That(() => fixture.Sut.RegisterHotKey(new IntPtr(123), 12, new ShortcutDescription()),
+            Assert.That(() => fixture.Sut.RegisterHotKey(new IntPtr(123), 12, ShortcutDescription.Shift(Keys.A)),
                 Throws.TypeOf<InvalidOperationException>());
         }
 
@@ -33,11 +33,7 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
             // Act
 
-            fixture.Sut.RegisterHotKey(new IntPtr(123), 12, new ShortcutDescription
-            {
-                Modifiers = ModifierKeys.Shift,
-                Key = Keys.A
-            });
+            fixture.Sut.RegisterHotKey(new IntPtr(123), 12, ShortcutDescription.Shift(Keys.A));
 
             // Assert
 

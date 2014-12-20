@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using FakeItEasy;
 using NUnit.Framework;
 using ShortcutRunner.HotkeyRegistration;
@@ -16,7 +17,7 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
             var sut = fixture.CreateSut();
 
             var windowIntPtr = new IntPtr(123);
-            var input = new ShortcutDescription();
+            var input = ShortcutDescription.Shift(Keys.A);
 
             A.CallTo(() => fixture.MessageCatchingWindow.Handle)
                 .Returns(windowIntPtr);
@@ -40,7 +41,7 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
             var sut = fixture.CreateSut();
 
             var observer = A.Fake<EventHandler<KeyPressedEventArgs>>();
-            var eventArgs = new KeyPressedEventArgs(new ShortcutDescription());
+            var eventArgs = new KeyPressedEventArgs(ShortcutDescription.Shift(Keys.A));
 
             // Act
 
@@ -61,7 +62,7 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
             var fixture = new KeyboardHookFixture();
             var sut = fixture.CreateSut();
 
-            var eventArgs = new KeyPressedEventArgs(new ShortcutDescription());
+            var eventArgs = new KeyPressedEventArgs(ShortcutDescription.Shift(Keys.A));
 
             // Act
 

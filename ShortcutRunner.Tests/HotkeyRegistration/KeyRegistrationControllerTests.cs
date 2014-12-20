@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using FakeItEasy;
 using NUnit.Framework;
 using ShortcutRunner.HotkeyRegistration;
@@ -14,8 +15,8 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
             var fixture = new KeyRegistrationControllerFixture();
 
-            var firstShortcut = new ShortcutDescription();
-            var secondShortcut = new ShortcutDescription();
+            var firstShortcut = ShortcutDescription.Shift(Keys.D1);
+            var secondShortcut = ShortcutDescription.Shift(Keys.D2);
 
             // Act
 
@@ -35,9 +36,9 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
             var fixture = new KeyRegistrationControllerFixture();
 
-            fixture.Sut.RegisterHotKey(new IntPtr(1), new ShortcutDescription());
-            fixture.Sut.RegisterHotKey(new IntPtr(2), new ShortcutDescription());
-            fixture.Sut.RegisterHotKey(new IntPtr(3), new ShortcutDescription());
+            fixture.Sut.RegisterHotKey(new IntPtr(1), ShortcutDescription.Shift(Keys.D1));
+            fixture.Sut.RegisterHotKey(new IntPtr(2), ShortcutDescription.Shift(Keys.D2));
+            fixture.Sut.RegisterHotKey(new IntPtr(3), ShortcutDescription.Shift(Keys.D3));
 
             // Act
 
