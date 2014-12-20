@@ -56,6 +56,24 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
             A.CallTo(() => fixture.ShortcutCollection.Add(shortcutDescription, action))
                 .MustHaveHappened();
         }
+
+        [Test]
+        public void Disposes_Keyboard_Hook_When_Disposed()
+        {
+            // Arrange
+
+            var fixture = new ShortcutControllerSutFactory();
+            var sut = fixture.CreateSut();
+
+            // Act
+
+            sut.Dispose();
+
+            // Assert
+
+            A.CallTo(() => fixture.KeyboardHook.Dispose())
+                .MustHaveHappened();
+        }
     }
 
     class ShortcutControllerSutFactory
