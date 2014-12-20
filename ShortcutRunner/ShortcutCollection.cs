@@ -13,20 +13,26 @@ namespace ShortcutRunner
 
     public class ShortcutCollection : IShortcutCollection
     {
-        private readonly IList<KeyValuePair<ShortcutDescription, Action>> _actions =
-            new List<KeyValuePair<ShortcutDescription, Action>>();
+        private readonly IDictionary<ShortcutDescription, IList<Action>> _actions =
+            new Dictionary<ShortcutDescription, IList<Action>>();
 
         public void Add(ShortcutDescription shortcutDescription, Action action)
         {
-            _actions.Add(new KeyValuePair<ShortcutDescription, Action>(shortcutDescription, action));
+            if (_actions.ContainsKey(shortcutDescription))
+            {
+                _actions[shortcutDescription].Add(action);
+            }
+            else
+            {
+                _actions.Add(shortcutDescription, new List<Action> { action });
+            }
         }
 
         public IEnumerable<Action> GetActions(ShortcutDescription shortcutDescription)
         {
-            return _actions
-                .Where(k => shortcutDescription.Equals(k.Key))
-                .Select(k => k.Value)
-                .ToArray();
+            return _actions.ContainsKey(shortcutDescription)
+                ? _actions[shortcutDescription].ToArray()
+                : new Action[] {};
         }
     }
 }

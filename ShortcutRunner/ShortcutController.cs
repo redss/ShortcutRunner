@@ -1,31 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner
 {
-    public interface IShortcutController
+    public interface IShortcutController : IDisposable
     {
         void RegisterShortcutAction(ShortcutDescription shortcutDescription, Action action);
     }
 
     public class ShortcutController : IShortcutController
     {
-        private readonly IList<KeyValuePair<ShortcutDescription, Action>> _actions =
-            new List<KeyValuePair<ShortcutDescription, Action>>();
+        private readonly IShortcutCollection _shortcutCollection;
+        private readonly IKeyboardHook _keyboardHook;
 
-        public ShortcutController(IKeyboardHook keyboardHook)
+        public ShortcutController(IShortcutCollection shortcutCollection, IKeyboardHook keyboardHook)
         {
+            _shortcutCollection = shortcutCollection;
+            _keyboardHook = keyboardHook;
+
             keyboardHook.KeyPressed += KeyboardHookOnKeyPressed;
         }
 
         private void KeyboardHookOnKeyPressed(object sender, KeyPressedEventArgs keyPressedEventArgs)
         {
-            var actions = _actions
-                .Where(k => keyPressedEventArgs.ShortcutDescription.Equals(k.Key))
-                .Select(k => k.Value)
-                .ToArray();
+            var actions = _shortcutCollection.GetActions(keyPressedEventArgs.ShortcutDescription);
 
             foreach (var action in actions)
             {
@@ -35,7 +33,12 @@ namespace ShortcutRunner
 
         public void RegisterShortcutAction(ShortcutDescription shortcutDescription, Action action)
         {
-            _actions.Add(new KeyValuePair<ShortcutDescription, Action>(shortcutDescription, action));
+            _shortcutCollection.Add(shortcutDescription, action);
+        }
+
+        public void Dispose()
+        {
+            _keyboardHook.Dispose();
         }
     }
 }
