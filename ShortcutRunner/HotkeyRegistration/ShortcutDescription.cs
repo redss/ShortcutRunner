@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.HotkeyRegistration
 {
     public class ShortcutDescription
     {

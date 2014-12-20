@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.HotkeyRegistration
 {
     [Flags]
     public enum ModifierKeys : uint

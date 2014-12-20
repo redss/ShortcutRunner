@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.HotkeyRegistration
 {
     public interface IMessageCatchingWindow : IDisposable
     {

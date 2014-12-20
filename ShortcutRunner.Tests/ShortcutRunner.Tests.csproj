@@ -46,12 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KeyboardHookTests.cs" />
-    <Compile Include="KeyRegistrationControllerTests.cs" />
-    <Compile Include="KeyRegistrationWrapperTests.cs" />
+    <Compile Include="HotkeyRegistration\KeyboardHookTests.cs" />
+    <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />
+    <Compile Include="HotkeyRegistration\KeyRegistrationWrapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortcutCollectionTests.cs" />
-    <Compile Include="ShortcutControllerTests.cs" />
+    <Compile Include="HotkeyRegistration\ShortcutControllerTests.cs" />
     <Compile Include="ShortcutDescriptionParserTests.cs" />
   </ItemGroup>
   <ItemGroup>

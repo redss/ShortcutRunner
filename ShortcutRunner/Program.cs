@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Microsoft.Practices.Unity;
+using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner
 {

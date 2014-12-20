@@ -1,8 +1,9 @@
 ﻿using System;
 using FakeItEasy;
 using NUnit.Framework;
+using ShortcutRunner.HotkeyRegistration;
 
-namespace ShortcutRunner.Tests
+namespace ShortcutRunner.Tests.HotkeyRegistration
 {
     class KeyboardHookTests
     {
@@ -13,6 +14,7 @@ namespace ShortcutRunner.Tests
 
             var fixture = new KeyboardHookFixture();
             var sut = fixture.CreateSut();
+
             var windowIntPtr = new IntPtr(123);
             var input = new ShortcutDescription();
 
@@ -67,7 +69,7 @@ namespace ShortcutRunner.Tests
 
             // Assert
 
-            Assert.Pass("Works, when no event listeners were registered.");
+            Assert.Pass("Works when no event listeners were registered.");
         }
 
         [Test]

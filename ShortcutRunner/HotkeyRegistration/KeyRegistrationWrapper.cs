@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.HotkeyRegistration
 {
     public interface IKeyRegistrationWrapper
     {

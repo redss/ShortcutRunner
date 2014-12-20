@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.HotkeyRegistration
 {
     public interface IKeyRegistrationController : IDisposable
     {

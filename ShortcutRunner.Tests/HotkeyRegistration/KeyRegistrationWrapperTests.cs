@@ -2,8 +2,9 @@
 using System.Windows.Forms;
 using FakeItEasy;
 using NUnit.Framework;
+using ShortcutRunner.HotkeyRegistration;
 
-namespace ShortcutRunner.Tests
+namespace ShortcutRunner.Tests.HotkeyRegistration
 {
     class KeyRegistrationWrapperTests
     {
