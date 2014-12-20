@@ -4,33 +4,42 @@ using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner.Tests.HotkeyRegistration
 {
-    class ShortcutDescriptionTests
+    class ShortcutDescriptionEqualityTests
     {
         [Datapoints]
-        public ShortcutDescription[] ShortcutDescriptions =
+        public Keys[] KeysDatapoints =
         {
-            ShortcutDescription.Shift(Keys.A),
-            ShortcutDescription.Shift(Keys.B),
-            ShortcutDescription.Ctrl(Keys.A),
-            ShortcutDescription.Ctrl(Keys.B)
+            Keys.A, Keys.B, Keys.C
+        };
+
+        [Datapoints]
+        public ModifierKeys[] ModifierKeysDatapoints =
+        {
+            ModifierKeys.Ctrl, ModifierKeys.Alt, ModifierKeys.Shift, ModifierKeys.Alt | ModifierKeys.Ctrl
         };
 
         [Theory]
-        public void Can_Detect_Equal_Shortcuts(ShortcutDescription a, ShortcutDescription b)
+        public void Can_Detect_Equal_Shortcuts(ModifierKeys firstModifiers, Keys firstKey, ModifierKeys secondModifiers, Keys secondKey)
         {
-            Assume.That(a.Modifiers == b.Modifiers && a.Key == b.Key);
-            
-            Assert.That(a, Is.EqualTo(b));
-            Assert.That(a.GetHashCode(), Is.EqualTo(b.GetHashCode()));
+            Assume.That(firstModifiers == secondModifiers && firstKey == secondKey);
+
+            var firstShortcut = new ShortcutDescription(firstModifiers, firstKey);
+            var secondShortcut = new ShortcutDescription(secondModifiers, secondKey);
+
+            Assert.That(firstShortcut, Is.EqualTo(secondShortcut));
+            Assert.That(firstShortcut.GetHashCode(), Is.EqualTo(secondShortcut.GetHashCode()));
         }
 
         [Theory]
-        public void Can_Detect_Different_Shortcuts(ShortcutDescription a, ShortcutDescription b)
+        public void Can_Detect_Different_Shortcuts(ModifierKeys firstModifiers, Keys firstKey, ModifierKeys secondModifiers, Keys secondKey)
         {
-            Assume.That(a.Modifiers != b.Modifiers || a.Key != b.Key);
-            
-            Assert.That(a, Is.Not.EqualTo(b));
-            Assert.That(a.GetHashCode(), Is.Not.EqualTo(b.GetHashCode()));
+            Assume.That(firstModifiers != secondModifiers || firstKey != secondKey);
+
+            var firstShortcut = new ShortcutDescription(firstModifiers, firstKey);
+            var secondShortcut = new ShortcutDescription(secondModifiers, secondKey);
+
+            Assert.That(firstShortcut, Is.Not.EqualTo(secondShortcut));
+            Assert.That(firstShortcut.GetHashCode(), Is.Not.EqualTo(secondShortcut.GetHashCode()));
         }
     }
 }
