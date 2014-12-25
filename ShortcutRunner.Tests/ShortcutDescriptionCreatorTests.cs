@@ -5,9 +5,9 @@ using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner.Tests
 {
-    public class ShortcutDescriptionParserTests
+    public class ShortcutDescriptionCreatorTests
     {
-        public ShortcutDescriptionParser Sut = new ShortcutDescriptionParser();
+        public ShortcutDescriptionCreator Sut = new ShortcutDescriptionCreator();
 
         public class ParseTestCase
         {

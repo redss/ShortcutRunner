@@ -6,7 +6,7 @@ using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner
 {
-    public interface IShortcutDescriptionParser
+    public interface IShortcutDescriptionCreator
     {
         ShortcutDescription Parse(string shortcut);
     }
@@ -28,7 +28,7 @@ namespace ShortcutRunner
     {
     }
 
-    public class ShortcutDescriptionParser : IShortcutDescriptionParser
+    public class ShortcutDescriptionCreator : IShortcutDescriptionCreator
     {
         interface IParsedKey
         {

@@ -71,7 +71,7 @@
     <Compile Include="ShortcutCollection.cs" />
     <Compile Include="ShortcutController.cs" />
     <Compile Include="HotkeyRegistration\ShortcutDescription.cs" />
-    <Compile Include="ShortcutDescriptionParser.cs" />
+    <Compile Include="ShortcutDescriptionCreator.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
