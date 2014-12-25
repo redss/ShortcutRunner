@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
+    <Compile Include="KeyParser.cs" />
     <Compile Include="IKeyToken.cs" />
     <Compile Include="ShortcutDescriptionParser.cs" />
     <Compile Include="Program.cs" />

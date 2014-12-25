@@ -50,6 +50,7 @@
     <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapperTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutDescriptionTests.cs" />
+    <Compile Include="KeyParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortcutCollectionTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutControllerTests.cs" />
