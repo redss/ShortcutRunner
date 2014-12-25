@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Microsoft.Practices.Unity;
-using ShortcutRunner.HotkeyRegistration;
-using ShortcutRunner.ShortcutDescriptionParsing;
 
 namespace ShortcutRunner
 {
@@ -14,14 +12,17 @@ namespace ShortcutRunner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var container = new UnityContainer()
-                .RegisterType<IKeyboardHook, KeyboardHook>()
-                .RegisterType<IShortcutDescriptionCreator, ShortcutDescriptionCreator>()
-                .RegisterType<IKeyRegistrationApi, KeyRegistrationApi>()
-                .RegisterType<IMessageCatchingWindow, MessageCatchingWindow>()
-                .RegisterType<IKeyRegistrationWrapper, KeyRegistrationWrapper>();
+            var container = new UnityContainer();
+
+            container.RegisterTypes(
+                AllClasses.FromAssemblies(typeof (Program).Assembly),
+                WithMappings.FromMatchingInterface,
+                WithName.Default,
+                WithLifetime.ContainerControlled);
 
             var form = container.Resolve<Form1>();
+
+            form.Disposed += (sender, args) => container.Dispose();
 
             Application.Run(form);
         }
