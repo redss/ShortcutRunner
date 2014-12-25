@@ -1,24 +1,32 @@
-﻿using System.Windows.Forms;
+﻿using FakeItEasy;
 using NUnit.Framework;
-using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner.Tests
 {
     public class ShortcutParserTests
     {
-        public ShortcutParser Sut = new ShortcutParser();
+        public ShortcutParser Sut = new ShortcutParser(A.Fake<IKeyParser>());
 
         [Test]
         public void Can_Parse_Shortcut_Description()
         {
-            var result = Sut.Parse("Ctrl + Shift + F2");
+            // Arrange
 
-            Assert.That(result, Is.EqualTo(new IKeyToken[]
-            {
-                new ModifierKeyToken(ModifierKeys.Ctrl),
-                new ModifierKeyToken(ModifierKeys.Shift),
-                new KeyToken(Keys.F2)
-            }));
+            var ctrlToken = A.Fake<IKeyToken>();
+            var shiftToken = A.Fake<IKeyToken>();
+            var f2Token = A.Fake<IKeyToken>();
+
+            A.CallTo(() => Sut.KeyParser.Parse("Ctrl")).Returns(ctrlToken);
+            A.CallTo(() => Sut.KeyParser.Parse("Shift")).Returns(shiftToken);
+            A.CallTo(() => Sut.KeyParser.Parse("F2")).Returns(f2Token);
+
+            // Act
+
+            var result = Sut.Parse("  Ctrl +Shift+  F2");
+
+            // Assert
+
+            Assert.That(result, Is.EqualTo(new[] { ctrlToken, shiftToken, f2Token }));
         }
     }
 }

@@ -9,13 +9,18 @@ namespace ShortcutRunner
 
     public class ShortcutParser : IShortcutParser
     {
-        private readonly IKeyParser _keyParser = new KeyParser();
+        public readonly IKeyParser KeyParser;
+
+        public ShortcutParser(IKeyParser keyParser)
+        {
+            KeyParser = keyParser;
+        }
 
         public IKeyToken[] Parse(string shortcut)
         {
             return shortcut.Split('+')
                 .Select(s => s.Trim())
-                .Select(_keyParser.Parse)
+                .Select(KeyParser.Parse)
                 .ToArray();
         }
     }

@@ -11,7 +11,7 @@ namespace ShortcutRunner
     
     public class ShortcutDescriptionCreator : IShortcutDescriptionCreator
     {
-        private readonly ShortcutParser _parser = new ShortcutParser();
+        private readonly ShortcutParser _parser = new ShortcutParser(new KeyParser());
 
         public ShortcutDescription Create(string shortcut)
         {
