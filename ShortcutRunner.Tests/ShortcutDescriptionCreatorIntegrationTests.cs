@@ -5,9 +5,12 @@ using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner.Tests
 {
-    public class ShortcutDescriptionCreatorTests
+    public class ShortcutDescriptionCreatorIntegrationTests
     {
-        public ShortcutDescriptionCreator Sut = new ShortcutDescriptionCreator();
+        public ShortcutDescriptionCreator Sut = new ShortcutDescriptionCreator(
+            new ShortcutParser(new KeyParser()),
+            new KeyTokensValidator(),
+            new ShortcutDescriptionFactory());
 
         public class ParseTestCase
         {
@@ -36,13 +39,6 @@ namespace ShortcutRunner.Tests
             var result = Sut.Create(testCase.ShortcutText);
 
             Assert.That(result, Is.EqualTo(testCase.ExpectedResult));
-        }
-
-        [Test]
-        public void Throws_Exception_When_Input_Is_Null()
-        {
-            Assert.That(() => Sut.Create(null),
-                Throws.TypeOf<ArgumentNullException>());
         }
     }
 }

@@ -55,7 +55,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortcutCollectionTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutControllerTests.cs" />
-    <Compile Include="ShortcutDescriptionCreatorTests.cs" />
+    <Compile Include="ShortcutCreatorTests.cs" />
+    <Compile Include="ShortcutDescriptionCreatorIntegrationTests.cs" />
     <Compile Include="ShortcutDescriptionFactoryTests.cs" />
     <Compile Include="ShortcutParserTests.cs" />
   </ItemGroup>

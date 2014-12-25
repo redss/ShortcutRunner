@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner
@@ -11,7 +10,16 @@ namespace ShortcutRunner
     
     public class ShortcutDescriptionCreator : IShortcutDescriptionCreator
     {
-        public readonly IShortcutParser Parser = new ShortcutParser(new KeyParser());
+        public readonly IShortcutParser ShortcutParser;
+        public readonly IKeyTokensValidator KeyTokensValidator;
+        public readonly IShortcutDescriptionFactory ShortcutDescriptionFactory;
+
+        public ShortcutDescriptionCreator(IShortcutParser shortcutParser, IKeyTokensValidator keyTokensValidator, IShortcutDescriptionFactory shortcutDescriptionFactory)
+        {
+            ShortcutParser = shortcutParser;
+            KeyTokensValidator = keyTokensValidator;
+            ShortcutDescriptionFactory = shortcutDescriptionFactory;
+        }
 
         public ShortcutDescription Create(string shortcut)
         {
@@ -20,29 +28,11 @@ namespace ShortcutRunner
                 throw new ArgumentNullException("shortcut");
             }
 
-            var parts = Parser.Parse(shortcut).ToArray();
+            var tokens = ShortcutParser.Parse(shortcut);
 
-            if (!parts.OfType<KeyToken>().Any())
-            {
-                throw new NoNonModifierKeysException();
-            }
+            KeyTokensValidator.Validate(tokens);
 
-            if (parts.OfType<KeyToken>().Count() > 1)
-            {
-                throw new MultipleNonModifierKeysException();
-            }
-
-            var modifierKeys = parts
-                .OfType<ModifierKeyToken>()
-                .Select(p => p.ModifierKeys)
-                .Aggregate((a, b) => a | b);
-
-            var key = parts
-                .OfType<KeyToken>()
-                .Single()
-                .Key;
-
-            return new ShortcutDescription(modifierKeys, key);
+            return ShortcutDescriptionFactory.Create(tokens);
         }
     }
 }
