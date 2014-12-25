@@ -66,18 +66,18 @@
     </Compile>
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
-    <Compile Include="KeyTokensValidator.cs" />
-    <Compile Include="KeyParser.cs" />
-    <Compile Include="IKeyToken.cs" />
-    <Compile Include="ShortcutDescriptionFactory.cs" />
-    <Compile Include="ShortcutParser.cs" />
+    <Compile Include="ShortcutDescriptionParsing\KeyTokensValidator.cs" />
+    <Compile Include="ShortcutDescriptionParsing\KeyParser.cs" />
+    <Compile Include="ShortcutDescriptionParsing\IKeyToken.cs" />
+    <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionFactory.cs" />
+    <Compile Include="ShortcutDescriptionParsing\ShortcutParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortcutCollection.cs" />
     <Compile Include="ShortcutController.cs" />
     <Compile Include="HotkeyRegistration\ShortcutDescription.cs" />
-    <Compile Include="ShortcutDescriptionCreator.cs" />
-    <Compile Include="ShortcutParsingException.cs" />
+    <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionCreator.cs" />
+    <Compile Include="ShortcutDescriptionParsing\ShortcutParsingException.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

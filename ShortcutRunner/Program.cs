@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Microsoft.Practices.Unity;
 using ShortcutRunner.HotkeyRegistration;
+using ShortcutRunner.ShortcutDescriptionParsing;
 
 namespace ShortcutRunner
 {

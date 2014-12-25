@@ -1,7 +1,7 @@
 using System.Windows.Forms;
 using ShortcutRunner.HotkeyRegistration;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.ShortcutDescriptionParsing
 {
     public interface IKeyToken
     {

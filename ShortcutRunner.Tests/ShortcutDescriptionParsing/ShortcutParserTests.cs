@@ -1,7 +1,8 @@
 ﻿using FakeItEasy;
 using NUnit.Framework;
+using ShortcutRunner.ShortcutDescriptionParsing;
 
-namespace ShortcutRunner.Tests
+namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
 {
     public class ShortcutParserTests
     {

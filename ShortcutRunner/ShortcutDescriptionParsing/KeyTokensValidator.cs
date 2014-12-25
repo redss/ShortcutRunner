@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.ShortcutDescriptionParsing
 {
     public interface IKeyTokensValidator
     {
