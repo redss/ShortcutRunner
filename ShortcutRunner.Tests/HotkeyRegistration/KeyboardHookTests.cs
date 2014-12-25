@@ -65,21 +65,5 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
             Assert.Pass("Works when no event listeners were registered.");
         }
-
-        [Test]
-        public void Can_Dispose_Window_And_Key_Registration_Controller()
-        {
-            // Act
-
-            Sut.Dispose();
-
-            // Assert
-
-            A.CallTo(() => Sut.MessageCatchingWindow.Dispose())
-                .MustHaveHappened();
-
-            A.CallTo(() => Sut.KeyRegistrationController.Dispose())
-                .MustHaveHappened();
-        }
     }
 }

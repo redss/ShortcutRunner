@@ -2,7 +2,7 @@
 
 namespace ShortcutRunner.HotkeyRegistration
 {
-    public interface IKeyboardHook : IDisposable
+    public interface IKeyboardHook
     {
         event EventHandler<KeyPressedEventArgs> KeyPressed;
         void RegisterHotKey(ShortcutDescription shortcutDescription);
@@ -26,12 +26,6 @@ namespace ShortcutRunner.HotkeyRegistration
         public void RegisterHotKey(ShortcutDescription shortcutDescription)
         {
             KeyRegistrationController.RegisterHotKey(MessageCatchingWindow.Handle, shortcutDescription);
-        }
-
-        public void Dispose()
-        {
-            KeyRegistrationController.Dispose();
-            MessageCatchingWindow.Dispose();
         }
 
         private void OnMessageCatchingWindowOnKeyPressed(object sender, KeyPressedEventArgs args)

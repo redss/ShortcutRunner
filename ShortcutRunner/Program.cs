@@ -12,13 +12,8 @@ namespace ShortcutRunner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var container = new UnityContainer();
-
-            container.RegisterTypes(
-                AllClasses.FromAssemblies(typeof (Program).Assembly),
-                WithMappings.FromMatchingInterface,
-                WithName.Default,
-                WithLifetime.ContainerControlled);
+            var container = new UnityContainer()
+                .ConfigureShortcutRunner();
 
             var form = container.Resolve<Form1>();
 

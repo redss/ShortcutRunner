@@ -3,7 +3,7 @@ using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner
 {
-    public interface IShortcutController : IDisposable
+    public interface IShortcutController
     {
         void RegisterShortcutAction(ShortcutDescription shortcutDescription, Action action);
     }
@@ -34,11 +34,6 @@ namespace ShortcutRunner
         public void RegisterShortcutAction(ShortcutDescription shortcutDescription, Action action)
         {
             ShortcutCollection.Add(shortcutDescription, action);
-        }
-
-        public void Dispose()
-        {
-            KeyboardHook.Dispose();
         }
     }
 }

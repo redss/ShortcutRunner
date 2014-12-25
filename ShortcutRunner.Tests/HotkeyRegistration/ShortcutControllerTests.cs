@@ -50,18 +50,5 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
             A.CallTo(() => Sut.ShortcutCollection.Add(shortcutDescription, action))
                 .MustHaveHappened();
         }
-
-        [Test]
-        public void Disposes_Keyboard_Hook_When_Disposed()
-        {
-            // Act
-
-            Sut.Dispose();
-
-            // Assert
-
-            A.CallTo(() => Sut.KeyboardHook.Dispose())
-                .MustHaveHappened();
-        }
     }
 }
