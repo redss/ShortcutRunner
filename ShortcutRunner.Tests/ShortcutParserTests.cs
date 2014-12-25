@@ -4,9 +4,9 @@ using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner.Tests
 {
-    public class ShortcutDescriptionParserTests
+    public class ShortcutParserTests
     {
-        public ShortcutDescriptionParser Sut = new ShortcutDescriptionParser();
+        public ShortcutParser Sut = new ShortcutParser();
 
         [Test]
         public void Can_Parse_Shortcut_Description()

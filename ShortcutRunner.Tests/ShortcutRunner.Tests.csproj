@@ -55,7 +55,7 @@
     <Compile Include="ShortcutCollectionTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutControllerTests.cs" />
     <Compile Include="ShortcutDescriptionCreatorTests.cs" />
-    <Compile Include="ShortcutDescriptionParserTests.cs" />
+    <Compile Include="ShortcutParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
