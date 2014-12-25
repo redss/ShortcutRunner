@@ -8,27 +8,26 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 {
     class KeyboardHookTests
     {
+        public readonly KeyboardHook Sut = SutFactory.Create<KeyboardHook>();
+
         [Test]
         public void Can_Register_A_Hot_Key()
         {
             // Arrange
 
-            var fixture = new KeyboardHookFixture();
-            var sut = fixture.CreateSut();
-
             var windowIntPtr = new IntPtr(123);
             var input = ShortcutDescription.Shift(Keys.A);
 
-            A.CallTo(() => fixture.MessageCatchingWindow.Handle)
+            A.CallTo(() => Sut.MessageCatchingWindow.Handle)
                 .Returns(windowIntPtr);
 
             // Act
 
-            sut.RegisterHotKey(input);
+            Sut.RegisterHotKey(input);
 
             // Assert
 
-            A.CallTo(() => fixture.KeyRegistrationController.RegisterHotKey(windowIntPtr, input))
+            A.CallTo(() => Sut.KeyRegistrationController.RegisterHotKey(windowIntPtr, input))
                 .MustHaveHappened();
         }
 
@@ -37,20 +36,17 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
         {
             // Arrange
 
-            var fixture = new KeyboardHookFixture();
-            var sut = fixture.CreateSut();
-
             var observer = A.Fake<EventHandler<KeyPressedEventArgs>>();
             var eventArgs = new KeyPressedEventArgs(ShortcutDescription.Shift(Keys.A));
 
             // Act
 
-            sut.KeyPressed += observer;
-            fixture.MessageCatchingWindow.KeyPressed += Raise.With(eventArgs);
+            Sut.KeyPressed += observer;
+            Sut.MessageCatchingWindow.KeyPressed += Raise.With(eventArgs);
 
             // Assert
 
-            A.CallTo(() => observer(sut, eventArgs))
+            A.CallTo(() => observer(Sut, eventArgs))
                 .MustHaveHappened();
         }
 
@@ -59,14 +55,11 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
         {
             // Arrange
 
-            var fixture = new KeyboardHookFixture();
-            var sut = fixture.CreateSut();
-
             var eventArgs = new KeyPressedEventArgs(ShortcutDescription.Shift(Keys.A));
 
             // Act
 
-            fixture.MessageCatchingWindow.KeyPressed += Raise.With(eventArgs);
+            Sut.MessageCatchingWindow.KeyPressed += Raise.With(eventArgs);
 
             // Assert
 
@@ -76,33 +69,17 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
         [Test]
         public void Can_Dispose_Window_And_Key_Registration_Controller()
         {
-            // Arrange
-
-            var fixture = new KeyboardHookFixture();
-            var sut = fixture.CreateSut();
-
             // Act
 
-            sut.Dispose();
+            Sut.Dispose();
 
             // Assert
 
-            A.CallTo(() => fixture.MessageCatchingWindow.Dispose())
+            A.CallTo(() => Sut.MessageCatchingWindow.Dispose())
                 .MustHaveHappened();
 
-            A.CallTo(() => fixture.KeyRegistrationController.Dispose())
+            A.CallTo(() => Sut.KeyRegistrationController.Dispose())
                 .MustHaveHappened();
-        }
-    }
-
-    class KeyboardHookFixture
-    {
-        public readonly IMessageCatchingWindow MessageCatchingWindow = A.Fake<IMessageCatchingWindow>();
-        public readonly IKeyRegistrationController KeyRegistrationController = A.Fake<IKeyRegistrationController>();
-
-        public KeyboardHook CreateSut()
-        {
-            return new KeyboardHook(MessageCatchingWindow, KeyRegistrationController);
         }
     }
 }

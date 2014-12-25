@@ -54,35 +54,18 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
     class KeyRegistrationControllerFixture
     {
-        public KeyRegistrationController Sut;
-
-        private readonly KeyRegistrationControllerSutFactory _sutFactory = new KeyRegistrationControllerSutFactory();
-
-        public KeyRegistrationControllerFixture()
-        {
-            Sut = _sutFactory.CreateSut();
-        }
+        public KeyRegistrationController Sut = SutFactory.Create<KeyRegistrationController>();
 
         public void RegisterHotKeyWasCalled(IntPtr handle, int id, ShortcutDescription shortcutDescription)
         {
-            A.CallTo(() => _sutFactory.KeyRegistrationWrapper.RegisterHotKey(handle, id, shortcutDescription))
+            A.CallTo(() => Sut.KeyRegistrationWrapper.RegisterHotKey(handle, id, shortcutDescription))
                 .MustHaveHappened();
         }
 
         public void UnregisterHotKeyWasCalled(IntPtr handle, int id)
         {
-            A.CallTo(() => _sutFactory.KeyRegistrationWrapper.UnregisterHotKey(handle, id))
+            A.CallTo(() => Sut.KeyRegistrationWrapper.UnregisterHotKey(handle, id))
                 .MustHaveHappened();
-        }
-    }
-
-    class KeyRegistrationControllerSutFactory
-    {
-        public readonly IKeyRegistrationWrapper KeyRegistrationWrapper = A.Fake<IKeyRegistrationWrapper>();
-
-        public KeyRegistrationController CreateSut()
-        {
-            return new KeyRegistrationController(KeyRegistrationWrapper);
         }
     }
 }

@@ -8,26 +8,24 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 {
     public class ShortcutControllerTests
     {
+        public readonly ShortcutController Sut = SutFactory.Create<ShortcutController>();
+
         [Test]
         public void Calls_All_Actions_Related_To_Shortcut_On_Keypressed_Event()
         {
             // Arrange
-
-            var fixture = new ShortcutControllerSutFactory();
 
             var firstAction = A.Fake<Action>();
             var secondAction = A.Fake<Action>();
 
             var shortcutDescription = ShortcutDescription.Shift(Keys.A);
 
-            A.CallTo(() => fixture.ShortcutCollection.GetActions(shortcutDescription))
+            A.CallTo(() => Sut.ShortcutCollection.GetActions(shortcutDescription))
                 .Returns(new[] { firstAction, secondAction });
-
-            fixture.CreateSut();
 
             // Act
 
-            fixture.KeyboardHook.KeyPressed += Raise.With(new KeyPressedEventArgs(shortcutDescription));
+            Sut.KeyboardHook.KeyPressed += Raise.With(new KeyPressedEventArgs(shortcutDescription));
 
             // Assert
 
@@ -40,50 +38,30 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
         {
             // Arrange
 
-            var fixture = new ShortcutControllerSutFactory();
-
-            var sut = fixture.CreateSut();
-
             var shortcutDescription = ShortcutDescription.Shift(Keys.A);
             var action = A.Fake<Action>();
 
             // Act
 
-            sut.RegisterShortcutAction(shortcutDescription, action);
+            Sut.RegisterShortcutAction(shortcutDescription, action);
 
             // Assert
 
-            A.CallTo(() => fixture.ShortcutCollection.Add(shortcutDescription, action))
+            A.CallTo(() => Sut.ShortcutCollection.Add(shortcutDescription, action))
                 .MustHaveHappened();
         }
 
         [Test]
         public void Disposes_Keyboard_Hook_When_Disposed()
         {
-            // Arrange
-
-            var fixture = new ShortcutControllerSutFactory();
-            var sut = fixture.CreateSut();
-
             // Act
 
-            sut.Dispose();
+            Sut.Dispose();
 
             // Assert
 
-            A.CallTo(() => fixture.KeyboardHook.Dispose())
+            A.CallTo(() => Sut.KeyboardHook.Dispose())
                 .MustHaveHappened();
-        }
-    }
-
-    class ShortcutControllerSutFactory
-    {
-        public IShortcutCollection ShortcutCollection = A.Fake<IShortcutCollection>();
-        public IKeyboardHook KeyboardHook = A.Fake<IKeyboardHook>();
-
-        public ShortcutController CreateSut()
-        {
-            return new ShortcutController(ShortcutCollection, KeyboardHook);
         }
     }
 }

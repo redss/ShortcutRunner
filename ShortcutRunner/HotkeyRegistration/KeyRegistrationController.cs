@@ -10,14 +10,14 @@ namespace ShortcutRunner.HotkeyRegistration
 
     public class KeyRegistrationController : IKeyRegistrationController
     {
-        private readonly IKeyRegistrationWrapper _keyRegistrationWrapper;
+        public readonly IKeyRegistrationWrapper KeyRegistrationWrapper;
 
         private IDictionary<int, IntPtr> _registeredHotkeys = new Dictionary<int, IntPtr>();
         private int _currentId;
 
         public KeyRegistrationController(IKeyRegistrationWrapper keyRegistrationWrapper)
         {
-            _keyRegistrationWrapper = keyRegistrationWrapper;
+            KeyRegistrationWrapper = keyRegistrationWrapper;
         }
 
         public void RegisterHotKey(IntPtr windowHandle, ShortcutDescription shortcutDescription)
@@ -25,14 +25,14 @@ namespace ShortcutRunner.HotkeyRegistration
             _currentId = _currentId + 1;
             _registeredHotkeys.Add(_currentId, windowHandle);
 
-            _keyRegistrationWrapper.RegisterHotKey(windowHandle, _currentId, shortcutDescription);
+            KeyRegistrationWrapper.RegisterHotKey(windowHandle, _currentId, shortcutDescription);
         }
 
         public void Dispose()
         {
             foreach (var registeredHotkey in _registeredHotkeys)
             {
-                _keyRegistrationWrapper.UnregisterHotKey(registeredHotkey.Value, registeredHotkey.Key);
+                KeyRegistrationWrapper.UnregisterHotKey(registeredHotkey.Value, registeredHotkey.Key);
             }
         }
     }

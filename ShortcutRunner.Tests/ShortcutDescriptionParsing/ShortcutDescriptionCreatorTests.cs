@@ -7,12 +7,9 @@ using ShortcutRunner.ShortcutDescriptionParsing;
 
 namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
 {
-    public class ShortcutCreatorTests
+    public class ShortcutDescriptionCreatorTests
     {
-        public readonly ShortcutDescriptionCreator Sut = new ShortcutDescriptionCreator(
-            A.Fake<IShortcutParser>(),
-            A.Fake<IKeyTokensValidator>(),
-            A.Fake<IShortcutDescriptionFactory>());
+        public readonly ShortcutDescriptionCreator Sut = SutFactory.Create<ShortcutDescriptionCreator>();
 
         [Test]
         public void Can_Create_Shortcut()
@@ -38,6 +35,9 @@ namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
             // Assert
 
             Assert.That(result, Is.SameAs(shortcutDescription));
+
+            A.CallTo(() => Sut.KeyTokensValidator.Validate(keyTokens))
+                .MustHaveHappened();
         }
 
         [Test]

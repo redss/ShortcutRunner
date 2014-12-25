@@ -10,20 +10,20 @@ namespace ShortcutRunner
 
     public class ShortcutController : IShortcutController
     {
-        private readonly IShortcutCollection _shortcutCollection;
-        private readonly IKeyboardHook _keyboardHook;
+        public readonly IShortcutCollection ShortcutCollection;
+        public readonly IKeyboardHook KeyboardHook;
 
         public ShortcutController(IShortcutCollection shortcutCollection, IKeyboardHook keyboardHook)
         {
-            _shortcutCollection = shortcutCollection;
-            _keyboardHook = keyboardHook;
+            ShortcutCollection = shortcutCollection;
+            KeyboardHook = keyboardHook;
 
             keyboardHook.KeyPressed += KeyboardHookOnKeyPressed;
         }
 
         private void KeyboardHookOnKeyPressed(object sender, KeyPressedEventArgs keyPressedEventArgs)
         {
-            var actions = _shortcutCollection.GetActions(keyPressedEventArgs.ShortcutDescription);
+            var actions = ShortcutCollection.GetActions(keyPressedEventArgs.ShortcutDescription);
 
             foreach (var action in actions)
             {
@@ -33,12 +33,12 @@ namespace ShortcutRunner
 
         public void RegisterShortcutAction(ShortcutDescription shortcutDescription, Action action)
         {
-            _shortcutCollection.Add(shortcutDescription, action);
+            ShortcutCollection.Add(shortcutDescription, action);
         }
 
         public void Dispose()
         {
-            _keyboardHook.Dispose();
+            KeyboardHook.Dispose();
         }
     }
 }

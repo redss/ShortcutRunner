@@ -60,9 +60,8 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
     class KeyRegistrationWrapperFixture
     {
-        public KeyRegistrationWrapper Sut;
+        public KeyRegistrationWrapper Sut = SutFactory.Create<KeyRegistrationWrapper>();
 
-        private KeyRegistrationWrapperSutFactory _sutFactory = new KeyRegistrationWrapperSutFactory();
         private bool _registerHotKeyResult = true;
 
         public KeyRegistrationWrapperFixture WithFailingHotkeyRegistration()
@@ -73,34 +72,22 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
 
         public KeyRegistrationWrapperFixture Configure()
         {
-            A.CallTo(() => _sutFactory.KeyRegistrationApi.RegisterHotKey(A<IntPtr>._, A<int>._, A<uint>._, A<uint>._))
+            A.CallTo(() => Sut.KeyRegistrationApi.RegisterHotKey(A<IntPtr>._, A<int>._, A<uint>._, A<uint>._))
                 .Returns(_registerHotKeyResult);
-
-            Sut = _sutFactory.CreateSut();
 
             return this;
         }
 
         public void VerifyKeyWasRegistered(IntPtr hWnd, int id, uint fsModifiers, uint vk)
         {
-            A.CallTo(() => _sutFactory.KeyRegistrationApi.RegisterHotKey(hWnd, id, fsModifiers, vk))
+            A.CallTo(() => Sut.KeyRegistrationApi.RegisterHotKey(hWnd, id, fsModifiers, vk))
                 .MustHaveHappened();
         }
 
         public void VerifyKeyWasUnregistered(IntPtr hWnd, int id)
         {
-            A.CallTo(() => _sutFactory.KeyRegistrationApi.UnregisterHotKey(hWnd, id))
+            A.CallTo(() => Sut.KeyRegistrationApi.UnregisterHotKey(hWnd, id))
                 .MustHaveHappened();
-        }
-    }
-
-    class KeyRegistrationWrapperSutFactory
-    {
-        public readonly IKeyRegistrationApi KeyRegistrationApi = A.Fake<IKeyRegistrationApi>();
-
-        public KeyRegistrationWrapper CreateSut()
-        {
-            return new KeyRegistrationWrapper(KeyRegistrationApi);
         }
     }
 }

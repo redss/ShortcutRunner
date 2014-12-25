@@ -36,6 +36,12 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\packages\AutoFixture.3.22.0\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture.AutoFakeItEasy">
+      <HintPath>..\packages\AutoFixture.AutoFakeItEasy.3.22.0\lib\net40\Ploeh.AutoFixture.AutoFakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -55,12 +61,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortcutCollectionTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutControllerTests.cs" />
-    <Compile Include="ShortcutDescriptionParsing\ShortcutCreatorTests.cs" />
+    <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionCreatorTests.cs" />
     <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionCreatorIntegrationTests.cs" />
     <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionFactoryTests.cs" />
     <Compile Include="ShortcutDescriptionParsing\ShortcutParserTests.cs" />
+    <Compile Include="SutFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

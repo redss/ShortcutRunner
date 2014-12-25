@@ -2,6 +2,8 @@ using System;
 
 namespace ShortcutRunner.ShortcutDescriptionParsing
 {
+    // TODO: More detailed parsing information.
+
     public class ShortcutParsingException : Exception
     {
     }

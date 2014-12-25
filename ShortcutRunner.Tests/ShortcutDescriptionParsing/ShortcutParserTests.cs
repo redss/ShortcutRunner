@@ -6,7 +6,7 @@ namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
 {
     public class ShortcutParserTests
     {
-        public ShortcutParser Sut = new ShortcutParser(A.Fake<IKeyParser>());
+        public ShortcutParser Sut = SutFactory.Create<ShortcutParser>();
 
         [Test]
         public void Can_Parse_Shortcut_Description()

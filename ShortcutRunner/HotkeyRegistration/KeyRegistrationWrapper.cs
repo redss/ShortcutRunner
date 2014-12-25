@@ -10,16 +10,16 @@ namespace ShortcutRunner.HotkeyRegistration
 
     public class KeyRegistrationWrapper : IKeyRegistrationWrapper
     {
-        private readonly IKeyRegistrationApi _keyRegistrationApi;
+        public readonly IKeyRegistrationApi KeyRegistrationApi;
 
         public KeyRegistrationWrapper(IKeyRegistrationApi keyRegistrationApi)
         {
-            _keyRegistrationApi = keyRegistrationApi;
+            KeyRegistrationApi = keyRegistrationApi;
         }
 
         public void RegisterHotKey(IntPtr windowHandle, int hotkeyId, ShortcutDescription shortcutDescription)
         {
-            var registrationSucceeded = _keyRegistrationApi.RegisterHotKey(windowHandle, hotkeyId,
+            var registrationSucceeded = KeyRegistrationApi.RegisterHotKey(windowHandle, hotkeyId,
                 (uint) shortcutDescription.Modifiers, (uint) shortcutDescription.Key);
 
             if (!registrationSucceeded)
@@ -30,7 +30,7 @@ namespace ShortcutRunner.HotkeyRegistration
 
         public void UnregisterHotKey(IntPtr windowHandle, int hotkeyId)
         {
-            _keyRegistrationApi.UnregisterHotKey(windowHandle, hotkeyId);
+            KeyRegistrationApi.UnregisterHotKey(windowHandle, hotkeyId);
         }
     }
 }

@@ -12,26 +12,26 @@ namespace ShortcutRunner.HotkeyRegistration
     {
         public event EventHandler<KeyPressedEventArgs> KeyPressed = (sender, args) => { };
 
-        private readonly IMessageCatchingWindow _messageCatchingWindow;
-        private readonly IKeyRegistrationController _keyRegistrationController;
+        public readonly IMessageCatchingWindow MessageCatchingWindow;
+        public readonly IKeyRegistrationController KeyRegistrationController;
 
         public KeyboardHook(IMessageCatchingWindow messageCatchingWindow, IKeyRegistrationController keyRegistrationController)
         {
-            _messageCatchingWindow = messageCatchingWindow;
-            _keyRegistrationController = keyRegistrationController;
+            MessageCatchingWindow = messageCatchingWindow;
+            KeyRegistrationController = keyRegistrationController;
 
-            _messageCatchingWindow.KeyPressed += OnMessageCatchingWindowOnKeyPressed;
+            MessageCatchingWindow.KeyPressed += OnMessageCatchingWindowOnKeyPressed;
         }
 
         public void RegisterHotKey(ShortcutDescription shortcutDescription)
         {
-            _keyRegistrationController.RegisterHotKey(_messageCatchingWindow.Handle, shortcutDescription);
+            KeyRegistrationController.RegisterHotKey(MessageCatchingWindow.Handle, shortcutDescription);
         }
 
         public void Dispose()
         {
-            _keyRegistrationController.Dispose();
-            _messageCatchingWindow.Dispose();
+            KeyRegistrationController.Dispose();
+            MessageCatchingWindow.Dispose();
         }
 
         private void OnMessageCatchingWindowOnKeyPressed(object sender, KeyPressedEventArgs args)
