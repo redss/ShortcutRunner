@@ -13,35 +13,34 @@ namespace ShortcutRunner
     {
         public IKeyToken Parse(string keyString)
         {
-            var modifier = TryParseModifier(keyString);
-            var key = TryParseKey(keyString);
-
-            if (modifier.HasValue)
+            if (IsDefinedInEnum<ModifierKeys>(keyString))
             {
-                return new ModifierKeyToken(modifier.Value);
-            }
-            if (key.HasValue)
-            {
-                return new KeyToken(key.Value);
+                var modifierKey = ParseEnum<ModifierKeys>(keyString);
+                
+                return new ModifierKeyToken(modifierKey);
             }
 
-            throw new KeyNotRecognizedException { NotRecognizedKey = keyString };
+            if (IsDefinedInEnum<Keys>(keyString))
+            {
+                var key = ParseEnum<Keys>(keyString);
+
+                return new KeyToken(key);
+            }
+
+            throw new KeyNotRecognizedException
+            {
+                NotRecognizedKey = keyString
+            };
         }
 
-        private ModifierKeys? TryParseModifier(string key)
+        private bool IsDefinedInEnum<TEnum>(string name)
         {
-            ModifierKeys result;
-            var parsed = Enum.TryParse(key, true, out result);
-
-            return parsed ? (ModifierKeys?)result : null;
+            return Enum.IsDefined(typeof (TEnum), name);
         }
 
-        private Keys? TryParseKey(string key)
+        private TEnum ParseEnum<TEnum>(string name)
         {
-            Keys parsedKey;
-            var keyValid = Enum.TryParse(key, true, out parsedKey);
-
-            return keyValid ? (Keys?)parsedKey : null;
+            return (TEnum)Enum.Parse(typeof(TEnum), name);
         }
     }
 }

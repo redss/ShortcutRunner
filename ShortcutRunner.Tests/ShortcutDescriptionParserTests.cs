@@ -20,13 +20,5 @@ namespace ShortcutRunner.Tests
                 new KeyToken(Keys.F2)
             }));
         }
-
-        [Test]
-        public void Throws_Exception_When_Key_Is_Invalid()
-        {
-            Assert.That(() => Sut.Parse("Ctrl + Invalid Key"),
-                Throws.TypeOf<KeyNotRecognizedException>()); // todo check invalid key string
-        }
-
     }
 }
