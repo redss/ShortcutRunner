@@ -19,7 +19,7 @@ namespace ShortcutRunner
             _keyboardHook.KeyPressed += KeyboardHookKeyPressed;
 
             // register the control + alt + F12 combination as hot key.
-            //var description = _creator.Parse("Ctrl + Alt + F12");
+            //var description = _creator.Create("Ctrl + Alt + F12");
 
             var description = new ShortcutDescription(HotkeyRegistration.ModifierKeys.None, Keys.A);
 

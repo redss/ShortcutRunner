@@ -33,7 +33,7 @@ namespace ShortcutRunner.Tests
         [TestCaseSource("TestCases")]
         public void Can_Parse_Shortcut_Description(ParseTestCase testCase)
         {
-            var result = Sut.Parse(testCase.ShortcutText);
+            var result = Sut.Create(testCase.ShortcutText);
 
             Assert.That(result, Is.EqualTo(testCase.ExpectedResult));
         }
@@ -41,28 +41,21 @@ namespace ShortcutRunner.Tests
         [Test]
         public void Throws_Exception_When_Non_Modifier_Keys_Are_Used_More_Than_Once()
         {
-            Assert.That(() => Sut.Parse("Ctrl + A + B"),
+            Assert.That(() => Sut.Create("Ctrl + A + B"),
                 Throws.TypeOf<MultipleNonModifierKeysException>());
-        }
-
-        [Test]
-        public void Throws_Exception_When_Key_Is_Invalid()
-        {
-            Assert.That(() => Sut.Parse("Ctrl + Invalid Key"),
-                Throws.TypeOf<KeyNotRecognizedException>()); // todo check invalid key string
         }
 
         [Test]
         public void Throws_Exception_When_Input_Is_Null()
         {
-            Assert.That(() => Sut.Parse(null),
+            Assert.That(() => Sut.Create(null),
                 Throws.TypeOf<ArgumentNullException>());
         }
 
         [Test]
         public void Throws_Exception_When_There_Is_No_Non_Modifier_Key()
         {
-            Assert.That(() => Sut.Parse("Ctrl + Shift"),
+            Assert.That(() => Sut.Create("Ctrl + Shift"),
                 Throws.TypeOf<NoNonModifierKeysException>());
         }
     }
