@@ -69,6 +69,7 @@
     <Compile Include="KeyTokensValidator.cs" />
     <Compile Include="KeyParser.cs" />
     <Compile Include="IKeyToken.cs" />
+    <Compile Include="ShortcutDescriptionFactory.cs" />
     <Compile Include="ShortcutParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

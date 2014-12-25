@@ -11,7 +11,7 @@ namespace ShortcutRunner
     
     public class ShortcutDescriptionCreator : IShortcutDescriptionCreator
     {
-        private readonly ShortcutParser _parser = new ShortcutParser(new KeyParser());
+        public readonly IShortcutParser Parser = new ShortcutParser(new KeyParser());
 
         public ShortcutDescription Create(string shortcut)
         {
@@ -20,7 +20,7 @@ namespace ShortcutRunner
                 throw new ArgumentNullException("shortcut");
             }
 
-            var parts = _parser.Parse(shortcut).ToArray();
+            var parts = Parser.Parse(shortcut).ToArray();
 
             if (!parts.OfType<KeyToken>().Any())
             {
