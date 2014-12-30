@@ -9,22 +9,22 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
 {
     class ConfigurationFileParserTests
     {
+        public ConfigurationParser Sut = SutFactory.CreateActual<ConfigurationParser>();
+
         [Test]
         public void Can_Parse_Configuration_File()
         {
             // Arrange
 
-            var configurationSource = new StringBuilder();
-
-            configurationSource.AppendLine("Ctrl + Shift + X -> some-command.bat --flag");
-            configurationSource.AppendLine("Alt + Shift + F -> other-command.bat");
-            configurationSource.AppendLine();
-
-            var sut = SutFactory.CreateActual<ConfigurationParser>();
+            var configurationSource = new StringBuilder()
+                .AppendLine("Ctrl + Shift + X -> some-command.bat --flag")
+                .AppendLine("Alt + Shift + F -> accidental-arrow.bat ->")
+                .AppendLine()
+                .ToString();
 
             // Act
 
-            var result = sut.Parse(configurationSource.ToString());
+            var result = Sut.Parse(configurationSource);
 
             // Assert
 
@@ -33,17 +33,31 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
                 new ConfigurationLine
                 {
                     Shortcut = new ShortcutDescription(ModifierKeys.Ctrl | ModifierKeys.Shift, Keys.X),
-                    Command = " some-command.bat --flag"
+                    Command = "some-command.bat --flag"
                 },
                 new ConfigurationLine
                 {
                     Shortcut = new ShortcutDescription(ModifierKeys.Alt | ModifierKeys.Shift, Keys.F),
-                    Command = " other-command.bat"
+                    Command = "accidental-arrow.bat ->"
                 }
             };
 
             Assert.That(result, Is.EqualTo(expectedResult)
                 .Using(new ConfigurationLineEqualityComparer()));
+        }
+
+        [Test]
+        public void Can_Handle_Invalid_Configuration()
+        {
+            var configurationSource = new StringBuilder()
+                .AppendLine("Ctrl + Shift + X -> some command")
+                .AppendLine("some invalid line")
+                .ToString();
+
+            var exception = Assert.Throws<InvalidLineException>(() => 
+                Sut.Parse(configurationSource));
+
+            Assert.That(exception.InvalidLine, Is.EqualTo("some invalid line"));
         }
     }
 

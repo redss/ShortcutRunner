@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ShortcutRunner.ShortcutDescriptionParsing;
 
 namespace ShortcutRunner.ConfigurationParsing
@@ -34,23 +35,36 @@ namespace ShortcutRunner.ConfigurationParsing
 
         private ConfigurationLine ParseLine(string line)
         {
-            var parts = line.Split("->");
+            var regex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
 
-            // todo: check validity
+            var match = regex.Match(line);
+
+            if (!match.Success)
+            {
+                throw new InvalidLineException
+                {
+                    InvalidLine = line
+                };
+            }
 
             return new ConfigurationLine
             {
-                Shortcut = ShortcutDescriptionCreator.Create(parts[0]),
-                Command = parts[1]
+                Shortcut = ShortcutDescriptionCreator.Create(match.Groups["shortcut"].Value),
+                Command = match.Groups["command"].Value
             };
         }
+    }
+
+    public class InvalidLineException : Exception
+    {
+        public string InvalidLine { get; set; }
     }
 
     static class StringExtensions
     {
         public static string[] Split(this string str, string separator)
         {
-            return str.Split(new[] {separator}, StringSplitOptions.None);
+            return str.Split(new[] {separator}, StringSplitOptions.None); // todo: test, null check
         }
     }
 }
