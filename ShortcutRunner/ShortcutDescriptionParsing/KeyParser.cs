@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using ShortcutRunner.HotkeyRegistration;
 
@@ -35,12 +36,13 @@ namespace ShortcutRunner.ShortcutDescriptionParsing
 
         private bool IsDefinedInEnum<TEnum>(string name)
         {
-            return Enum.IsDefined(typeof (TEnum), name);
+            return Enum.GetNames(typeof (TEnum))
+                .Any(n => n.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
 
         private TEnum ParseEnum<TEnum>(string name)
         {
-            return (TEnum)Enum.Parse(typeof(TEnum), name);
+            return (TEnum)Enum.Parse(typeof(TEnum), name, true);
         }
     }
 }

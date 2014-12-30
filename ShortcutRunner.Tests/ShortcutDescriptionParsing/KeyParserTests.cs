@@ -9,15 +9,14 @@ namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
     {
         public KeyParser Sut = new KeyParser();
 
-        [Datapoints]
-        public Keys[] KeyDatapoints = { Keys.A, Keys.K, Keys.F5 };
-
-        [Theory]
-        public void Can_Parse_Non_Modifier_Key(Keys key)
+        [TestCase("A", Keys.A)]
+        [TestCase("k", Keys.K)]
+        [TestCase("F5", Keys.F5)]
+        public void Can_Parse_Non_Modifier_Key(string keyString, Keys resultKey)
         {
-            var result = Sut.Parse(key.ToString());
+            var result = Sut.Parse(keyString);
 
-            var expectedToken = new KeyToken(key);
+            var expectedToken = new KeyToken(resultKey);
 
             Assert.That(result, Is.EqualTo(expectedToken));
         }
@@ -35,9 +34,10 @@ namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
         [Test]
         public void Throws_Exception_When_Key_Is_Invalid()
         {
-            Assert.That(() => Sut.Parse("Invalid Key"),
-                Throws.TypeOf<KeyNotRecognizedException>()
-                .With.Property("NotRecognizedKey").EqualTo("Invalid Key"));
+            var exception = Assert.Throws<KeyNotRecognizedException>(() =>
+                Sut.Parse("Invalid Key"));
+            
+            Assert.That(exception.NotRecognizedKey, Is.EqualTo("Invalid Key"));
         }
     }
 }
