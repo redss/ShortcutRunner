@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Microsoft.Practices.Unity;
 using NUnit.Framework;
 using ShortcutRunner.HotkeyRegistration;
 using ShortcutRunner.ShortcutDescriptionParsing;
@@ -7,10 +8,7 @@ namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
 {
     public class ShortcutDescriptionCreatorIntegrationTests
     {
-        public ShortcutDescriptionCreator Sut = new ShortcutDescriptionCreator(
-            new ShortcutParser(new KeyParser()),
-            new KeyTokensValidator(),
-            new ShortcutDescriptionFactory());
+        public ShortcutDescriptionCreator Sut = SutFactory.CreateActual<ShortcutDescriptionCreator>();
 
         public class ParseTestCase
         {

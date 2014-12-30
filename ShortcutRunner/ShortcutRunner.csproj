@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationParsing\ConfigurationParser.cs" />
+    <Compile Include="ConfigurationParsing\ParsedConfiguration.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationApi.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationController.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapper.cs" />
