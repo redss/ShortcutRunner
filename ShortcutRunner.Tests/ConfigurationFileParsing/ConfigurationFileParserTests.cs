@@ -17,6 +17,7 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
             // Arrange
 
             var configurationSource = new StringBuilder()
+                .AppendLine("# This is comment")
                 .AppendLine("Ctrl + Shift + X -> some-command.bat --flag")
                 .AppendLine("Alt + Shift + F -> accidental-arrow.bat ->")
                 .AppendLine()

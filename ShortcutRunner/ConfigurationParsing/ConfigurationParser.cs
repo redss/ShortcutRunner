@@ -33,18 +33,25 @@ namespace ShortcutRunner.ConfigurationParsing
             {
                 var line = lines[lineNumber];
 
-                if (!string.IsNullOrWhiteSpace(line))
+                if (LineIsNotCommentNorEmpty(line))
                 {
                     yield return ParseLine(line, lineNumber);
                 }
             }
         }
 
-        private readonly Regex _lineRegex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
+        private static readonly Regex CommentRegex = new Regex(@"^\s*#.*$");
+
+        private bool LineIsNotCommentNorEmpty(string line)
+        {
+            return !string.IsNullOrWhiteSpace(line) && !CommentRegex.IsMatch(line);
+        }
+
+        private static readonly Regex LineRegex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
 
         private ConfigurationLine ParseLine(string line, int lineNumber)
         {
-            var match = _lineRegex.Match(line);
+            var match = LineRegex.Match(line);
 
             if (!match.Success)
             {
