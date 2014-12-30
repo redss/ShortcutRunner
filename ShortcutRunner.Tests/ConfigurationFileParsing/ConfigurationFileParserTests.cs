@@ -50,6 +50,7 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
         public void Can_Handle_Invalid_Configuration()
         {
             var configurationSource = new StringBuilder()
+                .AppendLine()
                 .AppendLine("Ctrl + Shift + X -> some command")
                 .AppendLine("some invalid line")
                 .ToString();
@@ -58,6 +59,7 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
                 Sut.Parse(configurationSource));
 
             Assert.That(exception.InvalidLine, Is.EqualTo("some invalid line"));
+            Assert.That(exception.LineNumber, Is.EqualTo(2));
         }
     }
 

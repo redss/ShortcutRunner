@@ -23,27 +23,44 @@ namespace ShortcutRunner.ConfigurationParsing
         {
             return configurationSource
                 .Split(Environment.NewLine)
+                .Select(WithLineNumbers)
                 .Where(IsNotEmpty)
                 .Select(ParseLine)
                 .ToArray();
         }
 
-        private bool IsNotEmpty(string str)
+        class Line
         {
-            return !string.IsNullOrWhiteSpace(str);
+            public string Text { get; set; }
+            public int LineNumber { get; set; }
         }
 
-        private ConfigurationLine ParseLine(string line)
+        private Line WithLineNumbers(string line, int lineNumber)
+        {
+            return new Line
+            {
+                LineNumber = lineNumber,
+                Text = line
+            };
+        }
+
+        private bool IsNotEmpty(Line line)
+        {
+            return !string.IsNullOrWhiteSpace(line.Text);
+        }
+
+        private ConfigurationLine ParseLine(Line line)
         {
             var regex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
 
-            var match = regex.Match(line);
+            var match = regex.Match(line.Text);
 
             if (!match.Success)
             {
                 throw new InvalidLineException
                 {
-                    InvalidLine = line
+                    InvalidLine = line.Text,
+                    LineNumber = line.LineNumber
                 };
             }
 
@@ -58,6 +75,7 @@ namespace ShortcutRunner.ConfigurationParsing
     public class InvalidLineException : Exception
     {
         public string InvalidLine { get; set; }
+        public int LineNumber { get; set; }
     }
 
     static class StringExtensions
