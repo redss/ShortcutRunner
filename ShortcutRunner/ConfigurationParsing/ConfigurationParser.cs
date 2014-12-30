@@ -1,7 +1,8 @@
-﻿using System;
+﻿using ShortcutRunner.ShortcutDescriptionParsing;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using ShortcutRunner.ShortcutDescriptionParsing;
 
 namespace ShortcutRunner.ConfigurationParsing
 {
@@ -21,46 +22,36 @@ namespace ShortcutRunner.ConfigurationParsing
 
         public ConfigurationLine[] Parse(string configurationSource)
         {
-            return configurationSource
-                .Split(Environment.NewLine)
-                .Select(WithLineNumbers)
-                .Where(IsNotEmpty)
-                .Select(ParseLine)
-                .ToArray();
+            var lines = configurationSource.Split(Environment.NewLine);
+
+            return ParseLines(lines).ToArray();
         }
 
-        class Line
+        private IEnumerable<ConfigurationLine> ParseLines(string[] lines)
         {
-            public string Text { get; set; }
-            public int LineNumber { get; set; }
-        }
-
-        private Line WithLineNumbers(string line, int lineNumber)
-        {
-            return new Line
+            for (var lineNumber = 0; lineNumber < lines.Length; lineNumber++)
             {
-                LineNumber = lineNumber,
-                Text = line
-            };
+                var line = lines[lineNumber];
+
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    yield return ParseLine(line, lineNumber);
+                }
+            }
         }
 
-        private bool IsNotEmpty(Line line)
-        {
-            return !string.IsNullOrWhiteSpace(line.Text);
-        }
+        private readonly Regex _lineRegex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
 
-        private ConfigurationLine ParseLine(Line line)
+        private ConfigurationLine ParseLine(string line, int lineNumber)
         {
-            var regex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
-
-            var match = regex.Match(line.Text);
+            var match = _lineRegex.Match(line);
 
             if (!match.Success)
             {
                 throw new InvalidLineException
                 {
-                    InvalidLine = line.Text,
-                    LineNumber = line.LineNumber
+                    InvalidLine = line,
+                    LineNumber = lineNumber
                 };
             }
 
