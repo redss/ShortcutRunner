@@ -22,9 +22,14 @@ namespace ShortcutRunner.ConfigurationParsing
 
         public ConfigurationLine[] Parse(string configurationSource)
         {
-            var lines = configurationSource.Split(Environment.NewLine);
+            var lines = SplitToLines(configurationSource);
 
             return ParseLines(lines).ToArray();
+        }
+
+        private string[] SplitToLines(string str)
+        {
+            return str.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         }
 
         private IEnumerable<ConfigurationLine> ParseLines(string[] lines)
@@ -40,18 +45,19 @@ namespace ShortcutRunner.ConfigurationParsing
             }
         }
 
-        private static readonly Regex CommentRegex = new Regex(@"^\s*#.*$");
+        private readonly Regex _emptyRegex = new Regex(@"^\s*$");
+        private readonly Regex _commentRegex = new Regex(@"^\s*#.*$");
 
         private bool LineIsNotCommentNorEmpty(string line)
         {
-            return !string.IsNullOrWhiteSpace(line) && !CommentRegex.IsMatch(line);
+            return !_emptyRegex.IsMatch(line) && !_commentRegex.IsMatch(line);
         }
 
-        private static readonly Regex LineRegex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
+        private readonly Regex _lineRegex = new Regex(@"^(?<shortcut>.*?)\s*->\s*(?<command>.*?)$");
 
         private ConfigurationLine ParseLine(string line, int lineNumber)
         {
-            var match = LineRegex.Match(line);
+            var match = _lineRegex.Match(line);
 
             if (!match.Success)
             {
@@ -67,20 +73,6 @@ namespace ShortcutRunner.ConfigurationParsing
                 Shortcut = ShortcutDescriptionCreator.Create(match.Groups["shortcut"].Value),
                 Command = match.Groups["command"].Value
             };
-        }
-    }
-
-    public class InvalidLineException : Exception
-    {
-        public string InvalidLine { get; set; }
-        public int LineNumber { get; set; }
-    }
-
-    static class StringExtensions
-    {
-        public static string[] Split(this string str, string separator)
-        {
-            return str.Split(new[] {separator}, StringSplitOptions.None); // todo: test, null check
         }
     }
 }
