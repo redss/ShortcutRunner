@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
+    <Compile Include="ShortcutManagement\CommandActionProvider.cs" />
     <Compile Include="ShortcutManagement\ShortcutManager.cs" />
     <Compile Include="ShortcutParsing\KeyParser.cs" />
     <Compile Include="ShortcutParsing\KeyTokens.cs" />

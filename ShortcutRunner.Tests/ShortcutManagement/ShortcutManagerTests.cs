@@ -19,16 +19,27 @@ namespace ShortcutRunner.Tests.ShortcutManagement
 
             var firstLine = new ConfigurationLine
             {
-                Shortcut = new ShortcutDescription(ModifierKeys.Alt, Keys.Z)
+                Shortcut = new ShortcutDescription(ModifierKeys.Alt, Keys.Z),
+                Command = "first command"
             };
 
             var secondLine = new ConfigurationLine
             {
-                Shortcut = new ShortcutDescription(ModifierKeys.Alt, Keys.Y)
+                Shortcut = new ShortcutDescription(ModifierKeys.Alt, Keys.Y),
+                Command = "second command"
             };
 
             A.CallTo(() => sut.ConfigurationManager.ReadConfigurationFile())
                 .Returns(new[] { firstLine, secondLine });
+
+            var firstAction = A.Fake<Action>();
+            var secondAction = A.Fake<Action>();
+
+            A.CallTo(() => sut.CommandActionProvider.CreateCommandAction(firstLine.Command))
+                .Returns(firstAction);
+            
+            A.CallTo(() => sut.CommandActionProvider.CreateCommandAction(secondLine.Command))
+                .Returns(secondAction);
 
             // Act
 
@@ -36,12 +47,10 @@ namespace ShortcutRunner.Tests.ShortcutManagement
 
             // Assert
 
-            // TODO: Test actions somehow.
-
-            A.CallTo(() => sut.ShortcutController.RegisterShortcutAction(firstLine.Shortcut, A<Action>._))
+            A.CallTo(() => sut.ShortcutController.RegisterShortcutAction(firstLine.Shortcut, firstAction))
                 .MustHaveHappened();
 
-            A.CallTo(() => sut.ShortcutController.RegisterShortcutAction(secondLine.Shortcut, A<Action>._))
+            A.CallTo(() => sut.ShortcutController.RegisterShortcutAction(secondLine.Shortcut, secondAction))
                 .MustHaveHappened();
         }
     }
