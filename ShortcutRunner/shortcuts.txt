@@ -1,12 +1,19 @@
 ﻿# ShortcutRunner
 
+# This is configuration file in which you can define your shortcuts.
 # Lines starting with '#' or empty lines will be ignored.
+
 # Shortcut is defined as follows:
 
 Ctrl + Win + H -> mshta javascript:alert("Hello world!");close();
 
+# Left-hand-side of the arrow is "shortcut description".
 # Valid shortcut can contain multuple modifier keys (Ctrl, Alt, Shift, Win)
 # and must contain at least one non-modifier key (e. g. H).
-# You can define multiple same shortcuts.
+
+# Right-hand-side of the arrow is "command".
+# Command is sent do cmd.exe in the background when shortcut is triggered.
+
+# Application's only GUI is try icon, which can close the application.
 
 # Have fun!
