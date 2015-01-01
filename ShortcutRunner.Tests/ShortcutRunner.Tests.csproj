@@ -68,15 +68,10 @@
     <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapperTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutDescriptionTests.cs" />
-    <Compile Include="ShortcutDescriptionParsing\KeyParserTests.cs" />
-    <Compile Include="ShortcutDescriptionParsing\KeyTokensValidatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortcutCollectionTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutControllerTests.cs" />
-    <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionCreatorTests.cs" />
     <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionCreatorIntegrationTests.cs" />
-    <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionFactoryTests.cs" />
-    <Compile Include="ShortcutDescriptionParsing\ShortcutParserTests.cs" />
     <Compile Include="SutFactory.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ namespace ShortcutRunner.ShortcutDescriptionParsing
             var modifierKeys = keyTokens
                 .OfType<ModifierKeyToken>()
                 .Select(p => p.ModifierKeys)
-                .Aggregate((a, b) => a | b);
+                .Aggregate(ModifierKeys.None, (a, b) => a | b);
 
             var key = keyTokens
                 .OfType<KeyToken>()
