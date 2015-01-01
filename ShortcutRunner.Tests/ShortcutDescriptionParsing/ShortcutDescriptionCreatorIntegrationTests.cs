@@ -63,6 +63,7 @@ namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
                 Sut.Create(shortcut));
 
             Assert.That(exception.NotRecognizedKey, Is.EqualTo(invalidKey));
+            Assert.That(exception.Shortcut, Is.EqualTo(shortcut));
         }
 
         [TestCase("Ctrl + K + A")]
@@ -70,16 +71,20 @@ namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
         [TestCase("A + B + C")]
         public void Throws_Exception_When_Non_Modifier_Keys_Are_Used_More_Than_Once(string shortcut)
         {
-            Assert.That(() => Sut.Create(shortcut),
-                Throws.TypeOf<MultipleNonModifierKeysException>());
+            var exception = Assert.Throws<MultipleNonModifierKeysException>(() =>
+                Sut.Create(shortcut));
+
+            Assert.That(exception.Shortcut, Is.EqualTo(shortcut));
         }
 
         [TestCase("Ctrl + Alt")]
         [TestCase("Shift + Win")]
         public void Throws_Exception_When_There_Is_No_Non_Modifier_Key(string shortcut)
         {
-            Assert.That(() => Sut.Create(shortcut),
-                Throws.TypeOf<NoNonModifierKeysException>());
+            var exception = Assert.Throws<NoNonModifierKeysException>(() =>
+                Sut.Create(shortcut));
+
+            Assert.That(exception.Shortcut, Is.EqualTo(shortcut));
         }
     }
 }

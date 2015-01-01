@@ -15,13 +15,6 @@ namespace ShortcutRunner.ShortcutDescriptionParsing
         {
             ModifierKeys = modifierKeys;
         }
-
-        public override bool Equals(object obj)
-        {
-            var modifierToken = obj as ModifierKeyToken;
-
-            return modifierToken != null && modifierToken.ModifierKeys == ModifierKeys;
-        }
     }
 
     public class KeyToken : IKeyToken
@@ -31,13 +24,6 @@ namespace ShortcutRunner.ShortcutDescriptionParsing
         public KeyToken(Keys key)
         {
             Key = key;
-        }
-
-        public override bool Equals(object obj)
-        {
-            var keyToken = obj as KeyToken;
-
-            return keyToken != null && keyToken.Key == Key;
         }
     }
 }

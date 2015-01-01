@@ -69,11 +69,8 @@
     </Compile>
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
-    <Compile Include="ShortcutDescriptionParsing\KeyTokensValidator.cs" />
     <Compile Include="ShortcutDescriptionParsing\KeyParser.cs" />
     <Compile Include="ShortcutDescriptionParsing\IKeyToken.cs" />
-    <Compile Include="ShortcutDescriptionParsing\ShortcutDescriptionFactory.cs" />
-    <Compile Include="ShortcutDescriptionParsing\ShortcutParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortcutCollection.cs" />

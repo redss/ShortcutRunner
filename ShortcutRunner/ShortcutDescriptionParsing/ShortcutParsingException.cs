@@ -2,10 +2,9 @@ using System;
 
 namespace ShortcutRunner.ShortcutDescriptionParsing
 {
-    // TODO: More detailed parsing information.
-
     public class ShortcutParsingException : Exception
     {
+        public string Shortcut { get; set; }
     }
 
     public class NoNonModifierKeysException : ShortcutParsingException
