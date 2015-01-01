@@ -6,16 +6,16 @@ using ShortcutRunner.HotkeyRegistration;
 
 namespace ShortcutRunner.ShortcutDescriptionParsing
 {
-    public interface IShortcutDescriptionCreator
+    public interface IShortcutParser
     {
         ShortcutDescription Create(string shortcut);
     }
     
-    public class ShortcutDescriptionCreator : IShortcutDescriptionCreator
+    public class ShortcutParser : IShortcutParser
     {
         public readonly IKeyParser KeyParser;
 
-        public ShortcutDescriptionCreator(IKeyParser keyParser)
+        public ShortcutParser(IKeyParser keyParser)
         {
             KeyParser = keyParser;
         }

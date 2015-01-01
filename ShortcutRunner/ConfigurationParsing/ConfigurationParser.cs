@@ -13,11 +13,11 @@ namespace ShortcutRunner.ConfigurationParsing
 
     public class ConfigurationParser : IConfigurationParser
     {
-        public readonly IShortcutDescriptionCreator ShortcutDescriptionCreator;
+        public readonly IShortcutParser ShortcutParser;
 
-        public ConfigurationParser(IShortcutDescriptionCreator shortcutDescriptionCreator)
+        public ConfigurationParser(IShortcutParser shortcutParser)
         {
-            ShortcutDescriptionCreator = shortcutDescriptionCreator;
+            ShortcutParser = shortcutParser;
         }
 
         public ConfigurationLine[] Parse(string configurationSource)
@@ -70,7 +70,7 @@ namespace ShortcutRunner.ConfigurationParsing
 
             return new ConfigurationLine
             {
-                Shortcut = ShortcutDescriptionCreator.Create(match.Groups["shortcut"].Value),
+                Shortcut = ShortcutParser.Create(match.Groups["shortcut"].Value),
                 Command = match.Groups["command"].Value
             };
         }

@@ -6,14 +6,14 @@ using ShortcutRunner.ShortcutDescriptionParsing;
 
 namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
 {
-    public class ShortcutDescriptionCreatorIntegrationTests
+    class ShortcutParserTests
     {
-        public ShortcutDescriptionCreator Sut;
+        public ShortcutParser Sut;
 
         [SetUp]
         public void SetUp()
         {
-            Sut = SutFactory.CreateActual<ShortcutDescriptionCreator>();
+            Sut = new ShortcutParser(new KeyParser());
         }
 
         public dynamic[] ValidTestCases =

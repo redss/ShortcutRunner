@@ -7,12 +7,12 @@ namespace ShortcutRunner
     public partial class Form1 : Form
     {
         private readonly IKeyboardHook _keyboardHook;
-        private readonly IShortcutDescriptionCreator _creator;
+        private readonly IShortcutParser _parser;
 
-        public Form1(IKeyboardHook keyboardKeyboardHook, IShortcutDescriptionCreator creator)
+        public Form1(IKeyboardHook keyboardKeyboardHook, IShortcutParser parser)
         {
             _keyboardHook = keyboardKeyboardHook;
-            _creator = creator;
+            _parser = parser;
 
             InitializeComponent();
 
@@ -20,7 +20,7 @@ namespace ShortcutRunner
             _keyboardHook.KeyPressed += KeyboardHookKeyPressed;
 
             // register the control + alt + F12 combination as hot key.
-            //var description = _creator.Create("Ctrl + Alt + F12");
+            //var description = _parser.Create("Ctrl + Alt + F12");
 
             var description = new ShortcutDescription(HotkeyRegistration.ModifierKeys.None, Keys.A);
 
