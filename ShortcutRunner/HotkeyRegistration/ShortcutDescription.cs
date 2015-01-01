@@ -20,7 +20,7 @@ namespace ShortcutRunner.HotkeyRegistration
 
         public static ShortcutDescription Alt(Keys key)
         {
-            return new ShortcutDescription(ModifierKeys.Ctrl, key);
+            return new ShortcutDescription(ModifierKeys.Alt, key);
         }
 
         public static ShortcutDescription Shift(Keys key)

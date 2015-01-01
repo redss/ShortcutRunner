@@ -6,5 +6,13 @@ namespace ShortcutRunner.ConfigurationParsing
     {
         public string InvalidLine { get; set; }
         public int LineNumber { get; set; }
+
+        public InvalidLineException()
+        {
+        }
+
+        public InvalidLineException(Exception innerException) : base("", innerException)
+        {
+        }
     }
 }

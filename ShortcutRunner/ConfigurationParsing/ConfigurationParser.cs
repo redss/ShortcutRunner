@@ -1,4 +1,5 @@
-﻿using ShortcutRunner.ShortcutDescriptionParsing;
+﻿using ShortcutRunner.HotkeyRegistration;
+using ShortcutRunner.ShortcutDescriptionParsing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,9 +71,25 @@ namespace ShortcutRunner.ConfigurationParsing
 
             return new ConfigurationLine
             {
-                Shortcut = ShortcutParser.Create(match.Groups["shortcut"].Value),
+                Shortcut = ParseShortcut(match.Groups["shortcut"].Value, line, lineNumber),
                 Command = match.Groups["command"].Value
             };
+        }
+
+        private ShortcutDescription ParseShortcut(string shortcut, string line, int lineNumber)
+        {
+            try
+            {
+                return ShortcutParser.Create(shortcut);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidLineException(e)
+                {
+                    InvalidLine = line,
+                    LineNumber = lineNumber
+                };
+            }
         }
     }
 }

@@ -1,15 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ShortcutRunner.ConfigurationParsing;
 using ShortcutRunner.HotkeyRegistration;
+using ShortcutRunner.ShortcutDescriptionParsing;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
 
 namespace ShortcutRunner.Tests.ConfigurationFileParsing
 {
     class ConfigurationFileParserTests
     {
-        public ConfigurationParser Sut = SutFactory.CreateActual<ConfigurationParser>();
+        public ConfigurationParser Sut;
+
+        [SetUp]
+        public void SetUp()
+        {
+            Sut = SutFactory.CreateActual<ConfigurationParser>();
+        }
 
         [Test]
         public void Can_Parse_Configuration_File()
@@ -51,7 +58,6 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
         public void Can_Handle_Invalid_Configuration()
         {
             var configurationSource = new StringBuilder()
-                .AppendLine()
                 .AppendLine("Ctrl + Shift + X -> some command")
                 .AppendLine("some invalid line")
                 .ToString();
@@ -60,7 +66,23 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
                 Sut.Parse(configurationSource));
 
             Assert.That(exception.InvalidLine, Is.EqualTo("some invalid line"));
-            Assert.That(exception.LineNumber, Is.EqualTo(2));
+            Assert.That(exception.LineNumber, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Can_Handle_Invalid_Shortcut()
+        {
+            var configurationSource = new StringBuilder()
+                .AppendLine("Ctrl + Shift + X -> some command")
+                .AppendLine("invalid shortcut -> some command")
+                .ToString();
+
+            var exception = Assert.Throws<InvalidLineException>(() =>
+                Sut.Parse(configurationSource));
+
+            Assert.That(exception.InvalidLine, Is.EqualTo("invalid shortcut -> some command"));
+            Assert.That(exception.LineNumber, Is.EqualTo(1));
+            Assert.That(exception.InnerException, Is.InstanceOf<ShortcutParsingException>());
         }
     }
 
