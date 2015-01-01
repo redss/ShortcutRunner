@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandRunning\CommandRunner.cs" />
     <Compile Include="ConfigurationParsing\ConfigurationParser.cs" />
     <Compile Include="ConfigurationParsing\InvalidLineException.cs" />
     <Compile Include="ConfigurationParsing\ParsedConfiguration.cs" />

@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandRunning\CommandRunnerTests.cs" />
     <Compile Include="ConfigurationFileParsing\ConfigurationFileParserTests.cs" />
     <Compile Include="HotkeyRegistration\KeyboardHookTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />
