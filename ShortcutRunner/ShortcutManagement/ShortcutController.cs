@@ -1,7 +1,7 @@
 ﻿using System;
 using ShortcutRunner.HotkeyRegistration;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.ShortcutManagement
 {
     public interface IShortcutController
     {

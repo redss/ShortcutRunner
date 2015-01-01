@@ -3,8 +3,9 @@ using System.Windows.Forms;
 using FakeItEasy;
 using NUnit.Framework;
 using ShortcutRunner.HotkeyRegistration;
+using ShortcutRunner.ShortcutManagement;
 
-namespace ShortcutRunner.Tests.HotkeyRegistration
+namespace ShortcutRunner.Tests.ShortcutManagement
 {
     public class ShortcutControllerTests
     {

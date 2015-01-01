@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ShortcutRunner.HotkeyRegistration;
 
-namespace ShortcutRunner
+namespace ShortcutRunner.ShortcutManagement
 {
     public interface IShortcutCollection
     {

@@ -71,8 +71,8 @@
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapperTests.cs" />
     <Compile Include="HotkeyRegistration\ShortcutDescriptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShortcutCollectionTests.cs" />
-    <Compile Include="HotkeyRegistration\ShortcutControllerTests.cs" />
+    <Compile Include="ShortcutManagement\ShortcutCollectionTests.cs" />
+    <Compile Include="ShortcutManagement\ShortcutControllerTests.cs" />
     <Compile Include="ShortcutManagement\ShortcutManagerTests.cs" />
     <Compile Include="ShortcutParsing\ShortcutParserTests.cs" />
     <Compile Include="SutFactory.cs" />
