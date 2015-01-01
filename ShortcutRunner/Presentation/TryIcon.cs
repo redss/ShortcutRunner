@@ -20,7 +20,7 @@ namespace ShortcutRunner.Presentation
             var closeButton = new MenuItem
             {
                 Index = 0,
-                Text = "Exit"
+                Text = Resources.TryIconExitMenuItem
             };
 
             closeButton.Click += (sender, args) =>
@@ -36,10 +36,14 @@ namespace ShortcutRunner.Presentation
             _notifyIcon = new NotifyIcon
             {
                 ContextMenu = contextMenu,
-                Text = "Shortcut Runner",
+                Text = Resources.TryIconTitle,
                 Visible = true,
-                Icon = new Form().Icon // TODO: This obviously have to be changed.
+                Icon = new Form().Icon, // TODO: This obviously have to be changed.
+                BalloonTipTitle = Resources.BalloonTipTitle,
+                BalloonTipText = Resources.BalloonTipText
             };
+
+            _notifyIcon.ShowBalloonTip(1000 * 5);
         }
 
         public void Dispose()

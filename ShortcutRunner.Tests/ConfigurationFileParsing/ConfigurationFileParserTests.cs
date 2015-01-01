@@ -15,7 +15,7 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
         [SetUp]
         public void SetUp()
         {
-            Sut = SutFactory.CreateActual<ConfigurationParser>();
+            Sut = SutFactory.CreateActual<ConfigurationParser>(); // TODO: Use mocks instead?
         }
 
         [Test]

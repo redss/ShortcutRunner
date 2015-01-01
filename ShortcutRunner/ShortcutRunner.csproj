@@ -67,6 +67,11 @@
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
     <Compile Include="Presentation\ApplicationStarter.cs" />
+    <Compile Include="Presentation\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\TryIcon.cs" />
     <Compile Include="ShortcutManagement\CommandActionProvider.cs" />
     <Compile Include="ShortcutManagement\ShortcutManager.cs" />
@@ -80,6 +85,10 @@
     <Compile Include="ShortcutParsing\ShortcutParser.cs" />
     <Compile Include="ShortcutParsing\ShortcutParsingException.cs" />
     <Compile Include="ShortcutRunnerRegistar.cs" />
+    <EmbeddedResource Include="Presentation\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
