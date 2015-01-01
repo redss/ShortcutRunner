@@ -1,0 +1,12 @@
+﻿# ShortcutRunner
+
+# Lines starting with '#' or empty lines will be ignored.
+# Shortcut is defined as follows:
+
+Ctrl + Win + H -> mshta javascript:alert("Hello world!");close();
+
+# Valid shortcut can contain multuple modifier keys (Ctrl, Alt, Shift, Win)
+# and must contain at least one non-modifier key (e. g. H).
+# You can define multiple same shortcuts.
+
+# Have fun!

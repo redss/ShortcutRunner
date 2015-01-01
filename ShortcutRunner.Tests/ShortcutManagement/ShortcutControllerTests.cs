@@ -50,6 +50,9 @@ namespace ShortcutRunner.Tests.ShortcutManagement
 
             A.CallTo(() => Sut.ShortcutCollection.Add(shortcutDescription, action))
                 .MustHaveHappened();
+
+            A.CallTo(() => Sut.KeyboardHook.RegisterHotKey(shortcutDescription))
+                .MustHaveHappened();
         }
     }
 }

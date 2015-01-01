@@ -33,6 +33,7 @@ namespace ShortcutRunner.ShortcutManagement
 
         public void RegisterShortcutAction(ShortcutDescription shortcutDescription, Action action)
         {
+            KeyboardHook.RegisterHotKey(shortcutDescription);
             ShortcutCollection.Add(shortcutDescription, action);
         }
     }
