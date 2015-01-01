@@ -1,9 +1,9 @@
 ﻿using ShortcutRunner.HotkeyRegistration;
-using ShortcutRunner.ShortcutDescriptionParsing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using ShortcutRunner.ShortcutParsing;
 
 namespace ShortcutRunner.ConfigurationParsing
 {

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using ShortcutRunner.HotkeyRegistration;
-using ShortcutRunner.ShortcutDescriptionParsing;
+using ShortcutRunner.ShortcutParsing;
 
 namespace ShortcutRunner
 {

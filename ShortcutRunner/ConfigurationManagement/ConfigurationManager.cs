@@ -7,6 +7,8 @@ namespace ShortcutRunner.ConfigurationManagement
         ConfigurationLine[] ReadConfigurationFile();
     }
 
+    // TODO: Missing file handling.
+
     public class ConfigurationManager : IConfigurationManager
     {
         public const string ConfigurationFileName = "shortcuts.txt";

@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using NUnit.Framework;
 using ShortcutRunner.HotkeyRegistration;
-using ShortcutRunner.ShortcutDescriptionParsing;
+using ShortcutRunner.ShortcutParsing;
 
-namespace ShortcutRunner.Tests.ShortcutDescriptionParsing
+namespace ShortcutRunner.Tests.ShortcutParsing
 {
     class ShortcutParserTests
     {

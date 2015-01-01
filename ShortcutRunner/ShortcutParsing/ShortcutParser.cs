@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ShortcutRunner.HotkeyRegistration;
 
-namespace ShortcutRunner.ShortcutDescriptionParsing
+namespace ShortcutRunner.ShortcutParsing
 {
     public interface IShortcutParser
     {

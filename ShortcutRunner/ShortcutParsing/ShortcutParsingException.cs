@@ -1,6 +1,6 @@
 using System;
 
-namespace ShortcutRunner.ShortcutDescriptionParsing
+namespace ShortcutRunner.ShortcutParsing
 {
     public class ShortcutParsingException : Exception
     {

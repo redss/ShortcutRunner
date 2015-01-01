@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using ShortcutRunner.ConfigurationParsing;
 using ShortcutRunner.HotkeyRegistration;
-using ShortcutRunner.ShortcutDescriptionParsing;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using ShortcutRunner.ShortcutParsing;
 
 namespace ShortcutRunner.Tests.ConfigurationFileParsing
 {
