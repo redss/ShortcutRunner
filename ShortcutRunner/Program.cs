@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Microsoft.Practices.Unity;
+using ShortcutRunner.Presentation;
 
 namespace ShortcutRunner
 {
@@ -12,14 +13,13 @@ namespace ShortcutRunner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var container = new UnityContainer()
-                .ConfigureShortcutRunner();
-
-            var form = container.Resolve<Form1>();
-
-            form.Disposed += (sender, args) => container.Dispose();
-
-            Application.Run(form);
+            using(var container = new UnityContainer())
+            {
+                container
+                    .ConfigureShortcutRunner()
+                    .Resolve<ApplicationStarter>()
+                    .Start();
+            }
         }
     }
 }

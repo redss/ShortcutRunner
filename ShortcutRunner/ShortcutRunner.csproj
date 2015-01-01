@@ -64,14 +64,10 @@
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapper.cs" />
     <Compile Include="HotkeyRegistration\MessageCatchingWindow.cs" />
     <Compile Include="HotkeyRegistration\ModifierKeys.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
+    <Compile Include="Presentation\ApplicationStarter.cs" />
+    <Compile Include="Presentation\TryIcon.cs" />
     <Compile Include="ShortcutManagement\CommandActionProvider.cs" />
     <Compile Include="ShortcutManagement\ShortcutManager.cs" />
     <Compile Include="ShortcutParsing\KeyParser.cs" />
