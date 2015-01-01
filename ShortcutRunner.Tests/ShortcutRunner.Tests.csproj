@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="CommandRunning\CommandRunnerTests.cs" />
     <Compile Include="ConfigurationFileParsing\ConfigurationFileParserTests.cs" />
+    <Compile Include="ConfigurationManagement\ConfigurationManagerTests.cs" />
     <Compile Include="HotkeyRegistration\KeyboardHookTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapperTests.cs" />
