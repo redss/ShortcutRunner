@@ -1,4 +1,5 @@
 using System;
+using ShortcutRunner.Properties;
 
 namespace ShortcutRunner.ShortcutParsing
 {
@@ -7,13 +8,11 @@ namespace ShortcutRunner.ShortcutParsing
         public string Shortcut { get; set; }
     }
 
-    // TODO: Use resources.
-
     public class NoNonModifierKeysException : ShortcutParsingException
     {
         public override string Message
         {
-            get { return string.Format("Shortcut '{0}' contains no non-modifier key.", Shortcut); }
+            get { return string.Format(Resources.NoNonModifierKeysException, Shortcut); }
         }
     }
 
@@ -23,7 +22,7 @@ namespace ShortcutRunner.ShortcutParsing
 
         public override string Message
         {
-            get { return string.Format("Key '{0}' was not recognized in '{1}' shortcut.", NotRecognizedKey, Shortcut); }
+            get { return string.Format(Resources.KeyNotRecognizedException, NotRecognizedKey, Shortcut); }
         }
     }
 
@@ -31,7 +30,7 @@ namespace ShortcutRunner.ShortcutParsing
     {
         public override string Message
         {
-            get { return string.Format("Shortcut '{0}' conatins more than one non-modifier key.", Shortcut); }
+            get { return string.Format(Resources.MultipleNonModifierKeysException, Shortcut); }
         }
     }
 }

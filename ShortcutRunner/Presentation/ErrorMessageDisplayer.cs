@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using ShortcutRunner.Properties;
 
 namespace ShortcutRunner.Presentation
 {
@@ -11,7 +12,7 @@ namespace ShortcutRunner.Presentation
     {
         public void DisplayErrorMessage(string text)
         {
-            MessageBox.Show(text);
+            MessageBox.Show(text, Resources.ErrorMessageCaption);
         }
     }
 }

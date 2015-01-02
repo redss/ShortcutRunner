@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using ShortcutRunner.Properties;
 
 namespace ShortcutRunner.ConfigurationParsing
 {
@@ -16,7 +17,7 @@ namespace ShortcutRunner.ConfigurationParsing
             get
             {
                 return new StringBuilder()
-                    .AppendLine(string.Format("Line {0} does not match shortcut description format:", LineNumber))
+                    .AppendLine(string.Format(Resources.InvalidConfigurationLineException, LineNumber))
                     .Append(InvalidLine)
                     .ToString();
             }
@@ -32,7 +33,7 @@ namespace ShortcutRunner.ConfigurationParsing
             get
             {
                 return new StringBuilder()
-                    .AppendLine(string.Format("Shortcut at line {0} is invalid:", LineNumber))
+                    .AppendLine(string.Format(Resources.InvalidShortcutInConfigurationException, LineNumber))
                     .AppendLine(InvalidLine)
                     .AppendLine()
                     .Append(ShortcutException.Message)

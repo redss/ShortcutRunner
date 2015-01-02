@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShortcutRunner.Properties
-{
-
-
+namespace ShortcutRunner.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,49 +22,131 @@ namespace ShortcutRunner.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShortcutRunner.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can close ShortcutRunner using try icon..
+        /// </summary>
+        internal static string BalloonTipText {
+            get {
+                return ResourceManager.GetString("BalloonTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcut Runner.
+        /// </summary>
+        internal static string BalloonTipTitle {
+            get {
+                return ResourceManager.GetString("BalloonTipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShortcutRunner error.
+        /// </summary>
+        internal static string ErrorMessageCaption {
+            get {
+                return ResourceManager.GetString("ErrorMessageCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line {0} does not match shortcut description format:.
+        /// </summary>
+        internal static string InvalidConfigurationLineException {
+            get {
+                return ResourceManager.GetString("InvalidConfigurationLineException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcut at line {0} is invalid:.
+        /// </summary>
+        internal static string InvalidShortcutInConfigurationException {
+            get {
+                return ResourceManager.GetString("InvalidShortcutInConfigurationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key &apos;{0}&apos; was not recognized in &apos;{1}&apos; shortcut..
+        /// </summary>
+        internal static string KeyNotRecognizedException {
+            get {
+                return ResourceManager.GetString("KeyNotRecognizedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcut &apos;{0}&apos; conatins more than one non-modifier key..
+        /// </summary>
+        internal static string MultipleNonModifierKeysException {
+            get {
+                return ResourceManager.GetString("MultipleNonModifierKeysException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcut &apos;{0}&apos; contains no non-modifier key..
+        /// </summary>
+        internal static string NoNonModifierKeysException {
+            get {
+                return ResourceManager.GetString("NoNonModifierKeysException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit ShortcutRunner.
+        /// </summary>
+        internal static string TryIconExitMenuItem {
+            get {
+                return ResourceManager.GetString("TryIconExitMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcut Runner.
+        /// </summary>
+        internal static string TryIconTitle {
+            get {
+                return ResourceManager.GetString("TryIconTitle", resourceCulture);
             }
         }
     }
