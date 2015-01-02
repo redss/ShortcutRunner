@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using ShortcutRunner.ConfigurationParsing;
 
-namespace ShortcutRunner.Tests.ConfigurationFileParsing
+namespace ShortcutRunner.Tests.ConfigurationParsing
 {
     class ConfigurationParsingExceptionsTests
     {

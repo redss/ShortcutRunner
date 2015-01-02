@@ -1,15 +1,14 @@
-﻿using NUnit.Framework;
-using ShortcutRunner.ConfigurationParsing;
-using ShortcutRunner.HotkeyRegistration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using NUnit.Framework;
+using ShortcutRunner.ConfigurationParsing;
+using ShortcutRunner.HotkeyRegistration;
 using ShortcutRunner.ShortcutParsing;
 
-namespace ShortcutRunner.Tests.ConfigurationFileParsing
+namespace ShortcutRunner.Tests.ConfigurationParsing
 {
-    // TODO: Rename.
-    class ConfigurationFileParserTests
+    class ConfigurationParserTests
     {
         public ConfigurationParser Sut;
 

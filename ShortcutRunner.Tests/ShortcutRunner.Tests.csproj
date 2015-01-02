@@ -53,8 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandRunning\CommandRunnerTests.cs" />
-    <Compile Include="ConfigurationFileParsing\ConfigurationFileParserTests.cs" />
-    <Compile Include="ConfigurationFileParsing\ConfigurationParsingExceptionsTests.cs" />
+    <Compile Include="ConfigurationParsing\ConfigurationParserTests.cs" />
+    <Compile Include="ConfigurationParsing\ConfigurationParsingExceptionsTests.cs" />
     <Compile Include="ConfigurationManagement\ConfigurationManagerTests.cs" />
     <Compile Include="HotkeyRegistration\KeyboardHookTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />

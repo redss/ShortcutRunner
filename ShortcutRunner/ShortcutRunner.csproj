@@ -46,8 +46,8 @@
     <Compile Include="ConfigurationManagement\ConfigurationManager.cs" />
     <Compile Include="ConfigurationManagement\FileReader.cs" />
     <Compile Include="ConfigurationParsing\ConfigurationParser.cs" />
-    <Compile Include="ConfigurationParsing\ConfigurationParsingException.cs" />
-    <Compile Include="ConfigurationParsing\ParsedConfiguration.cs" />
+    <Compile Include="ConfigurationParsing\ConfigurationParsingExceptions.cs" />
+    <Compile Include="ConfigurationParsing\ConfigurationLine.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationApi.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationController.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapper.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="ShortcutManagement\ShortcutController.cs" />
     <Compile Include="HotkeyRegistration\ShortcutDescription.cs" />
     <Compile Include="ShortcutParsing\ShortcutParser.cs" />
-    <Compile Include="ShortcutParsing\ShortcutParsingException.cs" />
+    <Compile Include="ShortcutParsing\ShortcutParsingExceptions.cs" />
     <Compile Include="IoC\TinyIoC.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
