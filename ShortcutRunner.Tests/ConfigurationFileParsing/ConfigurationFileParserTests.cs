@@ -8,6 +8,7 @@ using ShortcutRunner.ShortcutParsing;
 
 namespace ShortcutRunner.Tests.ConfigurationFileParsing
 {
+    // TODO: Rename.
     class ConfigurationFileParserTests
     {
         public ConfigurationParser Sut;
@@ -63,11 +64,11 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
                 .AppendLine("some invalid line")
                 .ToString();
 
-            var exception = Assert.Throws<InvalidLineException>(() => 
+            var exception = Assert.Throws<InvalidConfigurationLineException>(() => 
                 Sut.Parse(configurationSource));
 
             Assert.That(exception.InvalidLine, Is.EqualTo("some invalid line"));
-            Assert.That(exception.LineNumber, Is.EqualTo(1));
+            Assert.That(exception.LineNumber, Is.EqualTo(2));
         }
 
         [Test]
@@ -78,12 +79,12 @@ namespace ShortcutRunner.Tests.ConfigurationFileParsing
                 .AppendLine("invalid shortcut -> some command")
                 .ToString();
 
-            var exception = Assert.Throws<InvalidLineException>(() =>
+            var exception = Assert.Throws<InvalidShortcutInConfigurationException>(() =>
                 Sut.Parse(configurationSource));
 
             Assert.That(exception.InvalidLine, Is.EqualTo("invalid shortcut -> some command"));
-            Assert.That(exception.LineNumber, Is.EqualTo(1));
-            Assert.That(exception.InnerException, Is.InstanceOf<ShortcutParsingException>());
+            Assert.That(exception.LineNumber, Is.EqualTo(2));
+            Assert.That(exception.ShortcutException, Is.InstanceOf<ShortcutParsingException>());
         }
     }
 

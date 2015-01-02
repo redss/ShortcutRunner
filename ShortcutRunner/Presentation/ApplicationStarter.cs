@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using ShortcutRunner.ShortcutManagement;
 
 namespace ShortcutRunner.Presentation
@@ -12,21 +13,30 @@ namespace ShortcutRunner.Presentation
     {
         public readonly IShortcutManager ShortcutManager;
         public readonly ITryIcon TryIcon;
+        public readonly IErrorMessageDisplayer ErrorMessageDisplayer;
         
-        public ApplicationStarter(IShortcutManager shortcutManager, ITryIcon tryIcon)
+        public ApplicationStarter(IShortcutManager shortcutManager, ITryIcon tryIcon, IErrorMessageDisplayer errorMessageDisplayer)
         {
             ShortcutManager = shortcutManager;
             TryIcon = tryIcon;
+            ErrorMessageDisplayer = errorMessageDisplayer;
         }
 
         public void Start()
         {
-            ShortcutManager.Initialize();
+            try
+            {
+                ShortcutManager.Initialize();
 
-            TryIcon.Initialize();
-            TryIcon.OnExit += (sender, args) => Application.Exit();
+                TryIcon.Initialize();
+                TryIcon.OnExit += (sender, args) => Application.Exit();
 
-            Application.Run();
+                Application.Run();
+            }
+            catch (Exception e)
+            {
+                ErrorMessageDisplayer.DisplayErrorMessage(e.Message);
+            }
         }
     }
 }

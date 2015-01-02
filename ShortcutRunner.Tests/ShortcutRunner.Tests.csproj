@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CommandRunning\CommandRunnerTests.cs" />
     <Compile Include="ConfigurationFileParsing\ConfigurationFileParserTests.cs" />
+    <Compile Include="ConfigurationFileParsing\ConfigurationParsingExceptionsTests.cs" />
     <Compile Include="ConfigurationManagement\ConfigurationManagerTests.cs" />
     <Compile Include="HotkeyRegistration\KeyboardHookTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="ShortcutManagement\ShortcutControllerTests.cs" />
     <Compile Include="ShortcutManagement\ShortcutManagerTests.cs" />
     <Compile Include="ShortcutParsing\ShortcutParserTests.cs" />
+    <Compile Include="ShortcutParsing\ShortcutParsingExceptionsTests.cs" />
     <Compile Include="SutFactory.cs" />
   </ItemGroup>
   <ItemGroup>

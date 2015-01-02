@@ -46,7 +46,7 @@
     <Compile Include="ConfigurationManagement\ConfigurationManager.cs" />
     <Compile Include="ConfigurationManagement\FileReader.cs" />
     <Compile Include="ConfigurationParsing\ConfigurationParser.cs" />
-    <Compile Include="ConfigurationParsing\InvalidLineException.cs" />
+    <Compile Include="ConfigurationParsing\ConfigurationParsingException.cs" />
     <Compile Include="ConfigurationParsing\ParsedConfiguration.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationApi.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationController.cs" />
@@ -57,6 +57,7 @@
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
     <Compile Include="IoC\ContainerProvider.cs" />
     <Compile Include="Presentation\ApplicationStarter.cs" />
+    <Compile Include="Presentation\ErrorMessageDisplayer.cs" />
     <Compile Include="Presentation\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -62,10 +62,10 @@ namespace ShortcutRunner.ConfigurationParsing
 
             if (!match.Success)
             {
-                throw new InvalidLineException
+                throw new InvalidConfigurationLineException
                 {
                     InvalidLine = line,
-                    LineNumber = lineNumber
+                    LineNumber = lineNumber + 1
                 };
             }
 
@@ -84,10 +84,11 @@ namespace ShortcutRunner.ConfigurationParsing
             }
             catch (Exception e)
             {
-                throw new InvalidLineException(e)
+                throw new InvalidShortcutInConfigurationException
                 {
                     InvalidLine = line,
-                    LineNumber = lineNumber
+                    LineNumber = lineNumber + 1,
+                    ShortcutException = e
                 };
             }
         }
