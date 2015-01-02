@@ -55,6 +55,7 @@
     <Compile Include="HotkeyRegistration\ModifierKeys.cs" />
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
+    <Compile Include="IoC\ContainerProvider.cs" />
     <Compile Include="Presentation\ApplicationStarter.cs" />
     <Compile Include="Presentation\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

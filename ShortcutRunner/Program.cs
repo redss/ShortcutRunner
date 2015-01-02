@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using ShortcutRunner.IoC;
 using ShortcutRunner.Presentation;
-using TinyIoC;
 
 namespace ShortcutRunner
 {
@@ -14,7 +14,7 @@ namespace ShortcutRunner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (var container = new TinyIoCContainer())
+            using (var container = ContainerProvider.CreateShortcutRunnerContriner())
             {
                 container.AutoRegister();
                 container.Resolve<IApplicationStarter>().Start();
