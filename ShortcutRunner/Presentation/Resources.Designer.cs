@@ -61,7 +61,7 @@ namespace ShortcutRunner.Presentation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shortcut Runner.
+        ///   Looks up a localized string similar to You can close ShortcutRunner using try icon..
         /// </summary>
         internal static string BalloonTipText {
             get {
@@ -70,7 +70,7 @@ namespace ShortcutRunner.Presentation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can close ShortcutRunner using try icon..
+        ///   Looks up a localized string similar to Shortcut Runner.
         /// </summary>
         internal static string BalloonTipTitle {
             get {
@@ -79,7 +79,7 @@ namespace ShortcutRunner.Presentation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit Shortcut Runner.
+        ///   Looks up a localized string similar to Exit ShortcutRunner.
         /// </summary>
         internal static string TryIconExitMenuItem {
             get {

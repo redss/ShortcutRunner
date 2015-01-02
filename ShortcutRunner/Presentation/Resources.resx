@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BalloonTipText" xml:space="preserve">
-    <value>Shortcut Runner</value>
-  </data>
-  <data name="BalloonTipTitle" xml:space="preserve">
     <value>You can close ShortcutRunner using try icon.</value>
   </data>
+  <data name="BalloonTipTitle" xml:space="preserve">
+    <value>Shortcut Runner</value>
+  </data>
   <data name="TryIconExitMenuItem" xml:space="preserve">
-    <value>Exit Shortcut Runner</value>
+    <value>Exit ShortcutRunner</value>
   </data>
   <data name="TryIconTitle" xml:space="preserve">
     <value>Shortcut Runner</value>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.Practices.Unity;
 using ShortcutRunner.Presentation;
+using TinyIoC;
 
 namespace ShortcutRunner
 {
@@ -10,15 +10,14 @@ namespace ShortcutRunner
         [STAThread]
         static void Main()
         {
+            // TODO: Are they even needed?
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using(var container = new UnityContainer())
+            using (var container = new TinyIoCContainer())
             {
-                container
-                    .ConfigureShortcutRunner()
-                    .Resolve<ApplicationStarter>()
-                    .Start();
+                container.AutoRegister();
+                container.Resolve<IApplicationStarter>().Start();
             }
         }
     }

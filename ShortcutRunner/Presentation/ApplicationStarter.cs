@@ -3,7 +3,12 @@ using ShortcutRunner.ShortcutManagement;
 
 namespace ShortcutRunner.Presentation
 {
-    public class ApplicationStarter
+    public interface IApplicationStarter
+    {
+        void Start();
+    }
+
+    public class ApplicationStarter : IApplicationStarter
     {
         public readonly IShortcutManager ShortcutManager;
         public readonly ITryIcon TryIcon;
