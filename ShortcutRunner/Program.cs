@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ShortcutRunner.IoC;
+using ShortcutRunner.Container;
 using ShortcutRunner.Presentation;
 
 namespace ShortcutRunner

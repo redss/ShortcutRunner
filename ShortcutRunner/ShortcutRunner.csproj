@@ -59,7 +59,7 @@
     <Compile Include="HotkeyRegistration\ModifierKeys.cs" />
     <Compile Include="HotkeyRegistration\KeyboardHook.cs" />
     <Compile Include="HotkeyRegistration\KeyPressedEventArgs.cs" />
-    <Compile Include="IoC\ContainerProvider.cs" />
+    <Compile Include="Container\ContainerProvider.cs" />
     <Compile Include="Presentation\ApplicationStarter.cs" />
     <Compile Include="Presentation\ErrorMessageDisplayer.cs" />
     <Compile Include="Presentation\TryIcon.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="HotkeyRegistration\ShortcutDescription.cs" />
     <Compile Include="ShortcutParsing\ShortcutParser.cs" />
     <Compile Include="ShortcutParsing\ShortcutParsingExceptions.cs" />
-    <Compile Include="IoC\TinyIoC.cs" />
+    <Compile Include="Container\TinyIoC.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

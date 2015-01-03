@@ -1,6 +1,6 @@
 ﻿using TinyIoC;
 
-namespace ShortcutRunner.IoC
+namespace ShortcutRunner.Container
 {
     public static class ContainerProvider
     {
