@@ -37,6 +37,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\IconBlack.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -104,6 +107,15 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF $(ConfigurationName) == Release (
+
+DEL $(SolutionDir)..\Release\ShortcutRunner.zip /Q
+
+$(SolutionDir)packages\7-Zip.CommandLine.9.20.0\tools\7za.exe a $(SolutionDir)..\Release\ShortcutRunner.zip $(TargetDir)ShortcutRunner.exe $(TargetDir)\shortcuts.txt
+
+)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
