@@ -56,6 +56,7 @@
     <Compile Include="ConfigurationParsing\ConfigurationParserTests.cs" />
     <Compile Include="ConfigurationParsing\ConfigurationParsingExceptionsTests.cs" />
     <Compile Include="ConfigurationManagement\ConfigurationManagerTests.cs" />
+    <Compile Include="HotkeyRegistration\HotkeyRegistrationExceptionTests.cs" />
     <Compile Include="HotkeyRegistration\KeyboardHookTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationControllerTests.cs" />
     <Compile Include="HotkeyRegistration\KeyRegistrationWrapperTests.cs" />

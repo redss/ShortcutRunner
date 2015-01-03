@@ -17,10 +17,14 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
                 .WithFailingHotkeyRegistration()
                 .Configure();
 
+            var shortcut = new ShortcutDescription(ModifierKeys.Shift, Keys.K);
+
             // Act, Assert
 
-            Assert.That(() => fixture.Sut.RegisterHotKey(new IntPtr(123), 12, ShortcutDescription.Shift(Keys.A)),
-                Throws.TypeOf<InvalidOperationException>());
+            var exception = Assert.Throws<HotkeyRegistrationException>(() => 
+                fixture.Sut.RegisterHotKey(new IntPtr(123), 12, shortcut));
+
+            Assert.That(exception.ShortcutDescription, Is.SameAs(shortcut));
         }
 
         [Test]

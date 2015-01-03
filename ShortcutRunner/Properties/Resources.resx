@@ -126,6 +126,9 @@
   <data name="ErrorMessageCaption" xml:space="preserve">
     <value>ShortcutRunner error</value>
   </data>
+  <data name="HotkeyRegistrationException" xml:space="preserve">
+    <value>There was an error while registering '{0}' shortcut in Windows.</value>
+  </data>
   <data name="InvalidConfigurationLineException" xml:space="preserve">
     <value>Line {0} does not match shortcut description format:</value>
   </data>

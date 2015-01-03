@@ -52,7 +52,7 @@ namespace ShortcutRunner.HotkeyRegistration
 
         public override string ToString()
         {
-            var modifierKeyFlags = new[] { ModifierKeys.Ctrl, ModifierKeys.Alt, ModifierKeys.Shift, ModifierKeys.Shift };
+            var modifierKeyFlags = new[] { ModifierKeys.Ctrl, ModifierKeys.Alt, ModifierKeys.Shift, ModifierKeys.Win };
 
             var flagsAndKey = modifierKeyFlags
                 .Where(flag => Modifiers.HasFlag(flag))

@@ -88,6 +88,15 @@ namespace ShortcutRunner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error while registering &apos;{0}&apos; shortcut in Windows..
+        /// </summary>
+        internal static string HotkeyRegistrationException {
+            get {
+                return ResourceManager.GetString("HotkeyRegistrationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Line {0} does not match shortcut description format:.
         /// </summary>
         internal static string InvalidConfigurationLineException {

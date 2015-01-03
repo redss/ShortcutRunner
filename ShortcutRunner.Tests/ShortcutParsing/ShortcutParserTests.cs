@@ -43,9 +43,11 @@ namespace ShortcutRunner.Tests.ShortcutParsing
         [TestCaseSource("ValidTestCases")]
         public void Can_Parse_Shortcut_Description(dynamic testCase)
         {
-            var result = Sut.Create(testCase.ShortcutText);
+            ShortcutDescription result = Sut.Create(testCase.ShortcutText);
 
-            Assert.That(result, Is.EqualTo(testCase.ExpectedResult));
+            ShortcutDescription expectedResult = testCase.ExpectedResult;
+
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         [Test]

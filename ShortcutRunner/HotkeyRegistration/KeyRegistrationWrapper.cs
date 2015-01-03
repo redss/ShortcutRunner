@@ -24,7 +24,10 @@ namespace ShortcutRunner.HotkeyRegistration
 
             if (!registrationSucceeded)
             {
-                throw new InvalidOperationException("Couldn’t register the hot key.");
+                throw new HotkeyRegistrationException
+                {
+                    ShortcutDescription = shortcutDescription
+                };
             }
         }
 
