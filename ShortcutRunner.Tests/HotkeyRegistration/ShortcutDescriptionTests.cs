@@ -41,5 +41,25 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
             Assert.That(firstShortcut, Is.Not.EqualTo(secondShortcut));
             Assert.That(firstShortcut.GetHashCode(), Is.Not.EqualTo(secondShortcut.GetHashCode()));
         }
+
+        public dynamic[] ToStringTestCases =
+        {
+            new
+            {
+                Shortcut = new ShortcutDescription(ModifierKeys.Ctrl, Keys.Z),
+                ExpectedString = "Ctrl + Z"
+            },
+            new
+            {
+                Shortcut = new ShortcutDescription(ModifierKeys.Ctrl | ModifierKeys.Alt, Keys.X),
+                ExpectedString = "Ctrl + Alt + X"
+            }
+        };
+
+        [TestCaseSource("ToStringTestCases")]
+        public void Can_Turn_Shortcut_Description_To_String(dynamic testCase)
+        {
+            Assert.That(testCase.Shortcut.ToString(), Is.EqualTo(testCase.ExpectedString));
+        }
     }
 }

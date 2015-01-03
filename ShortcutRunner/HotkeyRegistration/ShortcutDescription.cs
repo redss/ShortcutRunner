@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace ShortcutRunner.HotkeyRegistration
 {
@@ -45,6 +48,19 @@ namespace ShortcutRunner.HotkeyRegistration
             return otherShortcut != null 
                 && Key == otherShortcut.Key 
                 && Modifiers == otherShortcut.Modifiers;
+        }
+
+        public override string ToString()
+        {
+            var modifierKeyFlags = new[] { ModifierKeys.Ctrl, ModifierKeys.Alt, ModifierKeys.Shift, ModifierKeys.Shift };
+
+            var flagsAndKey = modifierKeyFlags
+                .Where(flag => Modifiers.HasFlag(flag))
+                .Select(flag => flag.ToString())
+                .Concat(new[] {Key.ToString()})
+                .ToArray();
+
+            return string.Join(" + ", flagsAndKey);
         }
     }
 }
