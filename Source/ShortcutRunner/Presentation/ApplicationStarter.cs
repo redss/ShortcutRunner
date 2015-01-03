@@ -26,17 +26,30 @@ namespace ShortcutRunner.Presentation
         {
             try
             {
-                ShortcutManager.Initialize();
-
-                TryIcon.Initialize();
-                TryIcon.OnExit += (sender, args) => Application.Exit();
-
-                Application.Run();
+                StartIfNotAlreadyRunning();
             }
             catch (Exception e)
             {
                 ErrorMessageDisplayer.DisplayErrorMessage(e.Message);
             }
+        }
+
+        private void StartIfNotAlreadyRunning()
+        {
+            using (new OneApplicationInstanceContext())
+            {
+                StartApplication();
+            }
+        }
+
+        private void StartApplication()
+        {
+            ShortcutManager.Initialize();
+
+            TryIcon.Initialize();
+            TryIcon.OnExit += (sender, args) => Application.Exit();
+
+            Application.Run();
         }
     }
 }

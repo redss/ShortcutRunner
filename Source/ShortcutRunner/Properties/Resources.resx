@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicationAlreadyRunningException" xml:space="preserve">
+    <value>ShortcutRunner is already running. Plase close other instance before running this one.</value>
+  </data>
   <data name="BalloonTipText" xml:space="preserve">
     <value>You can close ShortcutRunner using try icon.</value>
   </data>
@@ -127,7 +130,7 @@
     <value>ShortcutRunner error</value>
   </data>
   <data name="HotkeyRegistrationException" xml:space="preserve">
-    <value>There was an error while registering '{0}' shortcut. It is probably already registered by other application, so please check if other ShortcutRunners with same shortcut bindings are not running.</value>
+    <value>There was an error while registering '{0}' shortcut. It is probably already registered by other application.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="IconBlack" type="System.Resources.ResXFileRef, System.Windows.Forms">

@@ -61,6 +61,15 @@ namespace ShortcutRunner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ShortcutRunner is already running. Plase close other instance before running this one..
+        /// </summary>
+        internal static string ApplicationAlreadyRunningException {
+            get {
+                return ResourceManager.GetString("ApplicationAlreadyRunningException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can close ShortcutRunner using try icon..
         /// </summary>
         internal static string BalloonTipText {
@@ -88,7 +97,7 @@ namespace ShortcutRunner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was an error while registering &apos;{0}&apos; shortcut. It is probably already registered by other application, so please check if other ShortcutRunners with same shortcut bindings are not running..
+        ///   Looks up a localized string similar to There was an error while registering &apos;{0}&apos; shortcut. It is probably already registered by other application..
         /// </summary>
         internal static string HotkeyRegistrationException {
             get {

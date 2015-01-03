@@ -62,6 +62,7 @@
     <Compile Include="Container\ContainerProvider.cs" />
     <Compile Include="Presentation\ApplicationStarter.cs" />
     <Compile Include="Presentation\ErrorMessageDisplayer.cs" />
+    <Compile Include="Presentation\OneApplicationInstanceContext.cs" />
     <Compile Include="Presentation\TryIcon.cs" />
     <Compile Include="ShortcutManagement\CommandActionProvider.cs" />
     <Compile Include="ShortcutManagement\ShortcutManager.cs" />
