@@ -14,7 +14,7 @@ namespace ShortcutRunner.Tests.HotkeyRegistration
                 ShortcutDescription = new ShortcutDescription(ModifierKeys.Shift, Keys.X)
             };
 
-            Assert.That(sut.Message, Is.EqualTo("There was an error while registering 'Shift + X' shortcut in Windows."));
+            Assert.That(sut.Message, Is.StringContaining("Shift + X"));
         }
     }
 }
