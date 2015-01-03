@@ -34,6 +34,9 @@
   <PropertyGroup>
     <StartupObject>ShortcutRunner.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\IconBlack.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -93,6 +96,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\IconBlack.ico" />
+    <None Include="Resources\IconWhite.ico" />
     <Content Include="shortcuts.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -97,6 +97,26 @@ namespace ShortcutRunner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon IconBlack {
+            get {
+                object obj = ResourceManager.GetObject("IconBlack", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon IconWhite {
+            get {
+                object obj = ResourceManager.GetObject("IconWhite", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Line {0} does not match shortcut description format:.
         /// </summary>
         internal static string InvalidConfigurationLineException {

@@ -39,7 +39,7 @@ namespace ShortcutRunner.Presentation
                 ContextMenu = contextMenu,
                 Text = Resources.TryIconTitle,
                 Visible = true,
-                Icon = new Form().Icon, // TODO: This obviously have to be changed.
+                Icon = Resources.IconWhite,
                 BalloonTipTitle = Resources.BalloonTipTitle,
                 BalloonTipText = Resources.BalloonTipText
             };

@@ -129,6 +129,13 @@
   <data name="HotkeyRegistrationException" xml:space="preserve">
     <value>There was an error while registering '{0}' shortcut in Windows.</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="IconBlack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IconBlack.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IconWhite.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="InvalidConfigurationLineException" xml:space="preserve">
     <value>Line {0} does not match shortcut description format:</value>
   </data>
