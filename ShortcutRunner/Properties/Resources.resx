@@ -127,7 +127,7 @@
     <value>ShortcutRunner error</value>
   </data>
   <data name="HotkeyRegistrationException" xml:space="preserve">
-    <value>There was an error while registering '{0}' shortcut in Windows.</value>
+    <value>There was an error while registering '{0}' shortcut. It is probably already registered by other application, so please check if other ShortcutRunners with same shortcut bindings are not running.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="IconBlack" type="System.Resources.ResXFileRef, System.Windows.Forms">

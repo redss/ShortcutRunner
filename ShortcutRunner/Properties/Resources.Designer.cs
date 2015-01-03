@@ -88,7 +88,7 @@ namespace ShortcutRunner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was an error while registering &apos;{0}&apos; shortcut in Windows..
+        ///   Looks up a localized string similar to There was an error while registering &apos;{0}&apos; shortcut. It is probably already registered by other application, so please check if other ShortcutRunners with same shortcut bindings are not running..
         /// </summary>
         internal static string HotkeyRegistrationException {
             get {
