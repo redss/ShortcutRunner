@@ -7,9 +7,11 @@
 
 Ctrl + Win + H -> mshta javascript:alert("Hello world!");close();
 
-# Left-hand-side of the arrow is "shortcut description".
-# Valid shortcut can contain multuple modifier keys (Ctrl, Alt, Shift, Win)
-# and must contain at least one non-modifier key (e. g. H).
+# Left-hand-side of the arrow describes shortcut.
+# Valid shortcut can contain multuple modifier keys (Ctrl, Alt, Shift or Win)
+# and must contain exactly one non-modifier key (e. g. H). 
+# Full list of keys can be found here:
+# http://msdn.microsoft.com/en-us/library/system.windows.forms.keys%28v=vs.110%29.aspx#enumerationSection
 
 # Right-hand-side of the arrow is "command".
 # Command is sent do cmd.exe in the background when shortcut is triggered.
