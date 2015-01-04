@@ -2,6 +2,8 @@
 
 A minimalistic tool for defining global shortcuts for Windows. It doesn't need installation, is configured in a text file, has no GUI and can be easily turned on and off.
 
+[Download it here](https://www.dropbox.com/s/txn8qjokgnd0yvg/ShortcutRunner%201.0.zip?dl=1)
+
 ## Usage ##
 
 ShortcutRunner consists of two files:
