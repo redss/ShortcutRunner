@@ -37,3 +37,12 @@ Command is sent do cmd.exe when shortcut is triggered, so it can do pretty much 
 ## Requirements ##
 
 ShortcutRunner requires .NET Framework 4.5.
+
+## License ##
+
+ShortcutRunner is licensed under MIT. See LICENSE.txt.
+
+## Credits ##
+
+- [TinyIoC](https://github.com/grumpydev/TinyIoC)
+- [Freecns Cumulus](https://www.iconfinder.com/icons/183254/arrow_forward_right_icon)
